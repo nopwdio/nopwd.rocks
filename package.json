@@ -1,0 +1,42 @@
+{
+  "name": "@apinet/nopwd.rocks",
+  "version": "0.1",
+  "license": "MIT",
+  "contributors": [
+    "Adrien Pinet"
+  ],
+  "description": "Nopwd Demo App",
+  "main": "dist/demo-app.js",
+  "keywords": [
+    "passwordless",
+    "magic-link",
+    "nopwd",
+    "webauthn",
+    "fido",
+    "passkeys"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apinet/nopwd.rocks.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -fr dist",
+    "dev": "npm run clean && node ./build.js --dev",
+    "build": "npm run clean && node ./build.js"
+  },
+  "dependencies": {
+    "@apinet/nopwd-sdk": "^0.2.19",
+    "lit": "^2.8.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.2",
+    "typescript": "^5.2.2"
+  },
+  "type": "module"
+}
