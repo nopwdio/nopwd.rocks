@@ -1,8 +1,8 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import view from "./view.styles.js";
 import login from "./view-login.styles.js";
-import view from "./view-login.styles.js";
 
 import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
 import "@apinet/nopwd-sdk/dist/components/np-webauthn-signin.js";
@@ -25,10 +25,10 @@ export class ViewLogin extends LitElement {
   render() {
     return html`
       <h1>Welcome</h1>
-
+      <img src="/static/avatar-welcome.png" alt="welcome" />
       <np-webauthn-signin></np-webauthn-signin>
       <np-email-signin></np-email-signin>
-      <p>By log in, you agree to the</p>
+      <p>By logging in, you are agreeing to our Terms of Service and Privacy Policy</p>
     `;
   }
 }

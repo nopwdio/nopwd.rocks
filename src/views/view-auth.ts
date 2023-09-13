@@ -1,11 +1,12 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import login from "./view-login.styles.js";
-import view from "./view-login.styles.js";
+import login from "./view-auth.styles.js";
+import view from "./view.styles.js";
 
 import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
 import "@apinet/nopwd-sdk/dist/components/np-webauthn-signin.js";
+import "@apinet/nopwd-sdk/dist/components/np-webauthn-register.js";
 import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-webauthn-signin.js";
 
 declare global {
@@ -20,8 +21,14 @@ export class ViewAuth extends LitElement {
   static styles = [view, login];
 
   render() {
-    return this.auth
-      ? html` <h1>Well done ${this.auth.payload.sub}!</h1> `
-      : html`not authenticated.`;
+    if (!this.auth) return html`not authenticated`;
+
+    return html`
+      <h1>Well done!</h1>
+
+      ${this.auth.passkeyAvailable ? html` Your de ` : html``}
+
+      <p></p>
+    `;
   }
 }

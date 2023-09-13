@@ -14,10 +14,20 @@ export const index = `
     <title>Demo | NoPwd</title>
 
     <style>
+      @font-face {
+        font-family: inter;
+        src: url("/static/Inter.var.woff2") format("woff2 supports variations"),
+          url("/static/Inter.var.woff2") format("woff2-variations");
+        font-weight: 100 900;
+        font-stretch: 75% 125%;
+        font-display: swap;
+      }
+  
       html,
       body {
         margin: 0;
         padding: 0;
+        font-family: inter, system-ui, sans-serif;
       }
     </style>
     <script type="module" src="./demo-app.js"></script>
