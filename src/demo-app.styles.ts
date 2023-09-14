@@ -15,9 +15,18 @@ export default css`
   header,
   footer {
     display: flex;
-    justify-content: space-between;
 
     padding: var(--np-core-padding-m);
+  }
+
+  header {
+    justify-content: flex-end;
+    font-size: var(--np-core-font-size-l);
+  }
+
+  footer {
+    justify-content: flex-start;
+    font-size: var(--np-core-font-size-s);
   }
 
   main {
@@ -27,5 +36,20 @@ export default css`
 
   .icon {
     width: var(--np-core-font-size-m);
+    height: var(--np-core-font-size-m);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+
+    gap: var(--np-core-icon-gap);
+
+    text-decoration: none;
+    color: var(--np-core-color-grey-m);
+  }
+
+  a:hover {
+    color: var(--np-core-color-grey-s);
   }
 `;

@@ -24,11 +24,14 @@ export class ViewLogin extends LitElement {
 
   render() {
     return html`
-      <h1>Welcome</h1>
-      <img src="/static/avatar-welcome.png" alt="welcome" />
+      <h1>Welcome!</h1>
+      <img class="avatar" src="/static/avatar-welcome.webp" alt="welcome" />
       <np-webauthn-signin></np-webauthn-signin>
       <np-email-signin></np-email-signin>
-      <p>By logging in, you are agreeing to our Terms of Service and Privacy Policy</p>
+      <p class="disclaimer">
+        By logging in, you are agreeing to our <a href="/terms">Terms of Service</a> and
+        <a>Privacy Policy</a>
+      </p>
     `;
   }
 }

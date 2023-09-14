@@ -106,6 +106,6 @@ export default css`
   }
 
   :host {
-    --np-core-icon-gap: var(--np-core-padding-s);
+    --np-core-icon-gap: var(--np-core-padding-xs);
   }
 `;
