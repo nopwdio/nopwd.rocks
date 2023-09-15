@@ -46,10 +46,10 @@ export default css`
     gap: var(--np-core-icon-gap);
 
     text-decoration: none;
-    color: var(--np-core-color-grey-m);
+    color: var(--np-core-color-grey-s);
   }
 
   a:hover {
-    color: var(--np-core-color-grey-s);
+    color: var(--np-core-color-grey-xs);
   }
 `;

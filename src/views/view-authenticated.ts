@@ -1,35 +1,33 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import login from "./view-auth.styles.js";
 import view from "./view.styles.js";
+import authenticated from "./view-authenticated.styles.js";
 
 import "../components/ui-timestamp.js";
 
 import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
-import "@apinet/nopwd-sdk/dist/components/np-webauthn-signin.js";
-import "@apinet/nopwd-sdk/dist/components/np-webauthn-register.js";
-import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-webauthn-signin.js";
+import "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
+import "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
+import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
+import { CreateEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 
 declare global {
   interface HTMLElementTagNameMap {
-    "view-auth": ViewAuth;
+    "view-authenticated": ViewAuthenticated;
   }
 }
 
-@customElement("view-auth")
-export class ViewAuth extends LitElement {
+@customElement("view-authenticated")
+export class ViewAuthenticated extends LitElement {
   @property({ type: Object }) auth?: AuthEvent;
-  @property({ type: Boolean }) passkeyCreated: boolean = false;
+  @property({ type: Object }) createdPasskey?: CreateEvent;
 
-  static styles = [view, login];
-
-  onLogout() {
-    this.dispatchEvent(new CustomEvent("np:logout", { bubbles: true }));
-  }
+  static styles = [view, authenticated];
 
   render() {
-    if (!this.auth) return html`not authenticated (shouldn't append here)`;
+    if (!this.auth)
+      return html`not authenticated (shouldn't occur here cause this view is for authenticated user)`;
 
     return html`
       <h1>Well done!</h1>
@@ -38,15 +36,16 @@ export class ViewAuth extends LitElement {
         You are now authenticated as <strong>${this.auth.payload.sub}</strong> on
         <strong>${this.auth.payload.aud}</strong>
       </h2>
-      ${this.auth.passkeyAvailable
+      ${this.auth.suggest_passkey
         ? html`
-            <aside class="passkey">
-              ${!this.passkeyCreated
+            <aside class="passkey" @np:create=${this.onPasskeyCreated}>
+              ${!this.createdPasskey
                 ? html`
                     <p class="info">
                       Would you like to enable fingerprint or Face ID on this device?
                     </p>
-                    <np-webauthn-register></np-webauthn-register>
+                    <np-passkey-register token=${this.auth.token}></np-passkey-register>
+                    <button @click=${this.onSkipPasskey}>maybe later</button>
                   `
                 : html`
                     <p class="info">
@@ -59,13 +58,16 @@ export class ViewAuth extends LitElement {
           `
         : html`
             <details class="token">
-              <summary>The access token payload</summary>
+              <summary>Access token claims (RFC7519)</summary>
               <ul class="claims">
                 <li class="claim">
                   <span class="name">sub:</span><span class="value">${this.auth.payload.sub}</span>
                 </li>
                 <li class="claim">
                   <span class="name">aud:</span><span class="value">${this.auth.payload.aud}</span>
+                </li>
+                <li class="claim">
+                  <span class="name">iss:</span><span class="value">${this.auth.payload.iss}</span>
                 </li>
                 <li class="claim">
                   <span class="name">iat:</span
@@ -85,5 +87,22 @@ export class ViewAuth extends LitElement {
             </details>
           `}
     `;
+  }
+
+  onSkipPasskey() {
+    if (!this.auth) {
+      return;
+    }
+
+    this.auth.suggest_passkey = false;
+    this.requestUpdate();
+  }
+
+  onPasskeyCreated(e: CustomEvent<CreateEvent>) {
+    this.createdPasskey = e.detail;
+  }
+
+  onLogout() {
+    this.dispatchEvent(new CustomEvent("np:logout", { bubbles: true }));
   }
 }

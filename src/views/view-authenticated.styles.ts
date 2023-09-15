@@ -6,9 +6,7 @@ export default css`
     align-items: center;
   }
 
-  np-webauthn-signin,
-  np-email-signin,
-  np-webauthn-register,
+  np-passkey-register,
   details {
     width: 100%;
   }
@@ -18,10 +16,10 @@ export default css`
     display: flex;
     flex-flow: column;
     margin: var(--np-core-padding-l) 0 0 0;
-    gap: var(--np-core-padding-s);
+    gap: var(--np-core-padding-m);
   }
 
-  p button {
+  aside p button {
     background-color: transparent;
     color: currentColor;
     border: none;
@@ -30,13 +28,31 @@ export default css`
     font-weight: var(--np-core-font-weight-l);
   }
 
+  aside button {
+    background-color: transparent;
+    border: none;
+    font-size: var(--np-core-font-size-xs);
+    font-weight: var(--np-core-font-weight-l);
+    color: var(--np-core-color-grey-m);
+  }
+
+  aside button:hover {
+    color: currentColor;
+  }
+
   details {
     font-size: var(--np-core-font-size-s);
   }
 
   details summary {
+    cursor: pointer;
+
     color: var(--np-core-color-grey-s);
     font-size: var(--np-core-font-size-s);
+  }
+
+  details[open] summary {
+    font-weight: var(--np-core-font-weight-l);
   }
 
   details ul {
@@ -45,6 +61,7 @@ export default css`
     list-style: none;
     gap: var(--np-core-padding-s);
     padding: 0;
+    margin: var(--np-core-padding-m) 0 0 0;
   }
 
   details ul li {
@@ -62,5 +79,6 @@ export default css`
     color: var(--np-core-color-grey-xl);
     background-color: var(--np-core-color-grey-xs);
     border-radius: var(--np-core-border-radius-s);
+    font-size: var(--np-core-font-size-s);
   }
 `;

@@ -6,7 +6,7 @@ export default css`
     align-items: center;
   }
 
-  np-webauthn-signin,
+  np-passkey-signin,
   np-email-signin {
     width: 100%;
   }

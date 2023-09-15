@@ -4,7 +4,7 @@ export default css`
   :host {
     display: flex;
     flex-flow: column;
-    max-width: 280px;
+    max-width: 260px;
     border-radius: var(--np-core-border-radius-l);
     padding: var(--np-core-padding-m);
 
@@ -45,14 +45,13 @@ export default css`
   p {
     font-size: var(--np-core-font-size-s);
     margin: var(--np-core-padding-s) 0;
-    color: var(--np-core-color-grey-m);
+    color: var(--np-core-color-grey-s);
     text-align: center;
   }
 
   p.info {
     text-align: left;
     padding-left: var(--np-core-padding-m);
-    color: var(--np-core-color-grey-s);
     border-left: 1px solid var(--np-core-color-grey-l);
   }
 
