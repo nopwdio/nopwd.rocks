@@ -58,12 +58,13 @@ export default css`
   p.disclaimer {
     font-size: var(--np-core-font-size-xs);
     padding: 0 var(--np-core-padding-l);
+    font-weight: var(--np-core-font-weight-s);
   }
 
   p.disclaimer a {
     color: currentColor;
     text-decoration: none;
-    font-weight: var(--np-core-font-weight-l);
+    font-weight: var(--np-core-font-weight-m);
   }
 
   p.disclaimer a:hover {

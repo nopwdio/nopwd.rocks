@@ -2,7 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import view from "./view.styles.js";
-import authenticated from "./view-authenticated.styles.js";
+import user from "./view-user.styles.js";
 
 import "../components/ui-timestamp.js";
 
@@ -12,18 +12,12 @@ import "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
 import { CreateEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 
-declare global {
-  interface HTMLElementTagNameMap {
-    "view-authenticated": ViewAuthenticated;
-  }
-}
-
-@customElement("view-authenticated")
-export class ViewAuthenticated extends LitElement {
+@customElement("view-user")
+export class ViewUser extends LitElement {
   @property({ type: Object }) auth?: AuthEvent;
   @property({ type: Object }) createdPasskey?: CreateEvent;
 
-  static styles = [view, authenticated];
+  static styles = [view, user];
 
   render() {
     if (!this.auth)
@@ -104,5 +98,11 @@ export class ViewAuthenticated extends LitElement {
 
   onLogout() {
     this.dispatchEvent(new CustomEvent("np:logout", { bubbles: true }));
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "view-user": ViewUser;
   }
 }
