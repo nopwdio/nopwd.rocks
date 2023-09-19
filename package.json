@@ -8,16 +8,16 @@
   "description": "Nopwd Demo App",
   "main": "dist/demo-app.js",
   "keywords": [
+    "nopwd",
     "passwordless",
     "magic-link",
-    "nopwd",
-    "webauthn",
     "fido",
+    "webauthn",
     "passkeys"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/apinet/nopwd.rocks.git"
+    "url": "https://github.com/nopwdio/nopwd.rocks.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -28,6 +28,7 @@
   "scripts": {
     "clean": "rm -fr dist",
     "dev": "npm run clean && node ./build.js --dev",
+    "test": "export url=https://nopwd.rocks && playwright test e2e",
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {

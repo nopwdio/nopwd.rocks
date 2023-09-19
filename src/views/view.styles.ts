@@ -5,25 +5,24 @@ export default css`
     display: flex;
     flex-flow: column;
     max-width: 260px;
-    border-radius: var(--np-core-border-radius-l);
+    border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
-
     box-shadow: 15px 15px 20px var(--np-core-color-grey-l),
       -15px -15px 20px var(--np-core-color-white);
   }
 
   h1 {
-    color: var(--np-core-color-grey-m);
-    font-weight: var(--np-core-font-weight-m);
-    font-size: var(--np-core-font-size-l);
     margin: 0;
+    font-size: var(--np-core-font-size-l);
+    font-weight: var(--np-core-font-weight-m);
+    color: var(--np-core-color-grey-m);
   }
 
   h2 {
-    color: var(--np-core-color-grey-s);
-    font-weight: var(--np-core-font-weight-m);
-    font-size: var(--np-core-font-size-m);
     margin: 0;
+    color: var(--np-core-color-grey-s);
+    font-size: var(--np-core-font-size-m);
+    font-weight: var(--np-core-font-weight-m);
     text-align: center;
   }
 
