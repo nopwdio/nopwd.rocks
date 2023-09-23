@@ -22,9 +22,22 @@ const CONFIG = {
     external: [], // empty to ensure deps are bundled,
 }
 
-
+// creating dist folder
 await fs.mkdir(outDir, {recursive: true});
-await fs.writeFile(`${outDir}/index.html`, index);
+
+// creating index file
+const pageDesc = {
+    title: "Auth components demo | nopwd.rocks",
+    desc: "Integration of Nopwd components to authenticate a user using a link and passkey",
+    link: "https://nopwd.rocks",
+    img: "https://nopwd.rocks/static/opengraph.png",
+  };
+  
+import pkg from "./package.json" assert {type: "json"};
+const version = pkg.dependencies["@apinet/nopwd-sdk"].substring(1);
+await fs.writeFile(`${outDir}/index.html`, index(pageDesc, version));
+
+// copy static
 await fs.cp("./static", `${outDir}/static`, {recursive: true});
 
 

@@ -25,8 +25,19 @@ export default css`
   }
 
   footer {
-    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: var(--np-core-font-size-s);
+  }
+
+  footer .version {
+    font-size: var(--np-core-font-size-xs);
+    color: var(--np-core-color-grey-m);
+  }
+
+  footer .version .value {
+    font-weight: var(--np-core-font-weight-l);
   }
 
   main {

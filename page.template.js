@@ -29,20 +29,14 @@ const createFaviconTags = () => {
   `;
 }
 
-const pageDesc = {
-  title: "Auth components demo | nopwd.rocks",
-  desc: "Integration of Nopwd components to authenticate a user using a link and passkey",
-  link: "https://nopwd.rocks",
-  img: "https://nopwd.rocks/static/opengraph.png",
-};
-
-
-export const index = `
+export const index = (pageDesc, sdkVersion) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
+    <meta name="sdk-version" content="${sdkVersion}" />
+
     <base href="/" />
     ${createOpenGraphTags(pageDesc)}
     ${createFaviconTags()}

@@ -10,6 +10,7 @@ import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-signin.j
 
 @customElement("demo-app")
 export class DemoApp extends LitElement {
+  @property() sdkVersion?: string;
   @property({ type: Object }) auth?: AuthEvent;
 
   static styles = [core, app];
@@ -18,6 +19,10 @@ export class DemoApp extends LitElement {
     super.connectedCallback();
     // we preload the view-user
     import("./views/view-user.js");
+
+    // we get the sdk version
+    this.sdkVersion =
+      document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
   }
 
   render() {
@@ -33,7 +38,11 @@ export class DemoApp extends LitElement {
           : html`<view-user .auth=${this.auth}></view-user>`}
       </main>
       <footer>
-        <nav><a href="">${bolt} by nopwd.io</a></nav>
+        <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
+        <span class="version">
+          <span class="name">sdk version:</span>
+          <span class="value">${this.sdkVersion}</span>
+        </span>
       </footer>
     `;
   }
