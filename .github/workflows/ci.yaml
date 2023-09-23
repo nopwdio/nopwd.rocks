@@ -1,0 +1,36 @@
+name: Build and Deploy nopwd website
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@main
+
+      - name: ⬇️ Installing dependencies
+        run: npm i
+
+      - name: ⬇️ Building nopwd website
+        run: npm run build
+
+      - name: 📥 Installing firebase command tool
+        run: sudo npm install -g firebase-tools
+
+      - name: 🤫 building glcoud credential.json
+        run: echo ${{ secrets.DEPLOYMENT_KEY }} | base64 --decode > ./credential.json
+
+      - name: 📦 deploy nopwdio to preview
+        run: |
+          firebase use --add nopwdio
+          firebase target:apply hosting rocks nopwd-rocks
+          firebase deploy --only hosting:rocks
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ./credential.json
+
+      - name: 🤫 removing credential.json
+        run: rm ./credential.json

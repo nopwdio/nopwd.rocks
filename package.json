@@ -28,7 +28,6 @@
   "scripts": {
     "clean": "rm -fr dist",
     "dev": "npm run clean && node ./build.js --dev",
-    "test": "export url=https://nopwd.rocks && playwright test e2e",
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {
