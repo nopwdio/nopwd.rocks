@@ -33,7 +33,7 @@ export default css`
 
   footer .version {
     font-size: var(--np-core-font-size-xs);
-    color: var(--np-core-color-grey-m);
+    color: var(--np-core-color-grey-s);
   }
 
   footer .version .value {
