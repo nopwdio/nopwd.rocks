@@ -30,7 +30,7 @@ const pageDesc = {
     title: "Auth components demo | nopwd.rocks",
     desc: "Integration of Nopwd components to authenticate a user using a link and passkey",
     link: "https://nopwd.rocks",
-    img: "https://nopwd.rocks/static/opengraph.png",
+    img: "https://nopwd.rocks/static/opengraph.webp",
   };
   
 import pkg from "./package.json" assert {type: "json"};

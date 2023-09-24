@@ -7,8 +7,9 @@ export default css`
     max-width: 260px;
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
-    box-shadow: 15px 15px 20px var(--np-core-color-grey-l),
-      -15px -15px 20px var(--np-core-color-white);
+
+    box-shadow: 15px 15px 30px var(--np-core-color-grey-l),
+      -15px -15px 30px var(--np-core-color-white);
   }
 
   h1 {

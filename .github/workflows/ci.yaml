@@ -24,7 +24,7 @@ jobs:
       - name: 🤫 building glcoud credential.json
         run: echo ${{ secrets.DEPLOYMENT_KEY }} | base64 --decode > ./credential.json
 
-      - name: 📦 deploy nopwdio to preview
+      - name: 📦 deploy nopwd.rocks
         run: |
           firebase use --add nopwdio
           firebase target:apply hosting rocks nopwd-rocks
