@@ -9,7 +9,8 @@ import "../components/ui-timestamp.js";
 import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
 import "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
 import "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
-import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
+
+import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
 import { CreateEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 
 @customElement("view-user")
@@ -30,7 +31,7 @@ export class ViewUser extends LitElement {
         You are now authenticated as <strong>${this.auth.payload.sub}</strong> on
         <strong>${this.auth.payload.aud}</strong>
       </h2>
-      ${this.auth.suggest_passkey
+      ${this.auth.suggest_passkeys
         ? html`
             <aside class="passkey" @np:create=${this.onPasskeyCreated}>
               ${!this.createdPasskey
@@ -88,7 +89,7 @@ export class ViewUser extends LitElement {
       return;
     }
 
-    this.auth.suggest_passkey = false;
+    this.auth.suggest_passkeys = false;
     this.requestUpdate();
   }
 

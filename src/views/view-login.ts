@@ -28,8 +28,9 @@ export class ViewLogin extends LitElement {
       <np-email-signin email=${this.email}></np-email-signin>
 
       <p class="disclaimer">
-        By logging in, you are agreeing to our <a href="/terms">Terms of Service</a> and
-        <a>Privacy Policy</a>
+        By logging in, you are agreeing to our
+        <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
+        <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>
       </p>
     `;
   }
