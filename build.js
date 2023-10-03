@@ -8,7 +8,7 @@ const entryPoints = [
     "./src/demo-app.ts",
 ];
 
-const PORT = 3000;
+const PORT = 4321;
 const DEV_MODE = process.argv.includes("--dev");
 
 const CONFIG = {

@@ -4,8 +4,8 @@ import { customElement, property } from "lit/decorators.js";
 import view from "./view.styles.js";
 import login from "./view-login.styles.js";
 
-import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
-import "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
+import "@apinet/nopwd-sdk/dist/components/np-email-login.js";
+import "@apinet/nopwd-sdk/dist/components/np-passkey-login.js";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -24,8 +24,8 @@ export class ViewLogin extends LitElement {
       <img class="avatar" src="/static/avatar-welcome.webp" alt="welcome" />
 
       <!-- the only logic to use magic link or passkey authentication is here -->
-      <np-passkey-signin @input=${this.onEmailChange}></np-passkey-signin>
-      <np-email-signin email=${this.email}></np-email-signin>
+      <np-passkey-login @input=${this.onEmailChange}></np-passkey-login>
+      <np-email-login email=${this.email}></np-email-login>
 
       <p class="disclaimer">
         By logging in, you are agreeing to our

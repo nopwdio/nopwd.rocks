@@ -6,11 +6,11 @@ import user from "./view-user.styles.js";
 
 import "../components/ui-timestamp.js";
 
-import "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
-import "@apinet/nopwd-sdk/dist/components/np-passkey-signin.js";
+import "@apinet/nopwd-sdk/dist/components/np-email-login.js";
+import "@apinet/nopwd-sdk/dist/components/np-passkey-login.js";
 import "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 
-import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-email-signin.js";
+import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-email-login.js";
 import { CreateEvent } from "@apinet/nopwd-sdk/dist/components/np-passkey-register.js";
 
 @customElement("view-user")

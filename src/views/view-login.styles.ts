@@ -6,8 +6,8 @@ export default css`
     align-items: center;
   }
 
-  np-passkey-signin,
-  np-email-signin {
+  np-passkey-login,
+  np-email-login {
     width: 100%;
   }
 `;
