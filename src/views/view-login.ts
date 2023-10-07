@@ -6,6 +6,11 @@ import login from "./view-login.styles.js";
 
 import "@apinet/nopwd-sdk/dist/components/np-email-login.js";
 import "@apinet/nopwd-sdk/dist/components/np-passkey-login.js";
+import {
+  InvalidLinkError,
+  NpEmailLoginError,
+  QuotaError,
+} from "@apinet/nopwd-sdk/dist/components/np-email-login.js";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -16,6 +21,8 @@ declare global {
 @customElement("view-login")
 export class ViewLogin extends LitElement {
   @property() email: string = "";
+  @property({ type: Object }) error?: NpEmailLoginError;
+
   static styles = [view, login];
 
   render() {
@@ -24,19 +31,36 @@ export class ViewLogin extends LitElement {
       <img class="avatar" src="/static/avatar-welcome.webp" alt="welcome" />
 
       <!-- the only logic to use magic link or passkey authentication is here -->
-      <np-passkey-login @input=${this.onEmailChange}></np-passkey-login>
+      <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
       <np-email-login email=${this.email}></np-email-login>
 
-      <p class="disclaimer">
-        By logging in, you are agreeing to our
-        <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
-        <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>
-      </p>
+      ${this.error instanceof QuotaError
+        ? html`
+            <p class="disclaimer">
+              Too many attempts. Please wait
+              <ui-timestamp
+                timestamp=${Date.now() / 1000 + this.error.getTimeToWait()}
+              ></ui-timestamp>
+              and try again.
+            </p>
+          `
+        : html`
+            <p class="disclaimer">
+              By logging in, you are agreeing to our
+              <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
+              <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>
+            </p>
+          `}
     `;
   }
 
   onEmailChange(e: KeyboardEvent) {
     const input = e.target as HTMLInputElement;
     this.email = input.value;
+  }
+
+  onError(e: CustomEvent<NpEmailLoginError>) {
+    alert(e.detail);
+    this.error = e.detail;
   }
 }
