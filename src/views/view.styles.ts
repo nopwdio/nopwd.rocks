@@ -4,7 +4,7 @@ export default css`
   :host {
     display: flex;
     flex-flow: column;
-    max-width: 260px;
+    width: 260px;
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
 
@@ -53,6 +53,15 @@ export default css`
     text-align: left;
     padding-left: var(--np-core-padding-m);
     border-left: 1px solid var(--np-core-color-grey-l);
+  }
+
+  p.error {
+    padding: 0 var(--np-core-padding-l);
+    font-weight: var(--np-core-font-weight-m);
+  }
+
+  p.error ui-timestamp {
+    font-weight: var(--np-core-font-weight-l);
   }
 
   p.disclaimer {

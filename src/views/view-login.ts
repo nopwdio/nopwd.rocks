@@ -7,10 +7,12 @@ import login from "./view-login.styles.js";
 import "@apinet/nopwd-sdk/dist/components/np-email-login.js";
 import "@apinet/nopwd-sdk/dist/components/np-passkey-login.js";
 import {
-  InvalidLinkError,
-  NpEmailLoginError,
+  InvalidCodeParameterError,
+  NetworkError,
   QuotaError,
-} from "@apinet/nopwd-sdk/dist/components/np-email-login.js";
+  UnexpectedError,
+  NoPwdError,
+} from "@apinet/nopwd-sdk/dist/flows/errors.js";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -21,7 +23,8 @@ declare global {
 @customElement("view-login")
 export class ViewLogin extends LitElement {
   @property() email: string = "";
-  @property({ type: Object }) error?: NpEmailLoginError;
+  @property({ type: Object }) error?: NoPwdError;
+  private errorTimeout?: number;
 
   static styles = [view, login];
 
@@ -32,18 +35,27 @@ export class ViewLogin extends LitElement {
 
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
-      <np-email-login email=${this.email}></np-email-login>
+      <np-email-login email=${this.email} @np:error=${this.onError}></np-email-login>
 
-      ${this.error instanceof QuotaError
+      ${this.error instanceof InvalidCodeParameterError
         ? html`
-            <p class="disclaimer">
-              Too many attempts. Please wait
-              <ui-timestamp
-                timestamp=${Date.now() / 1000 + this.error.getTimeToWait()}
-              ></ui-timestamp>
-              and try again.
+            <p class="error">
+              This link has expired or is invalid. Enter your email and try again.
             </p>
           `
+        : this.error instanceof QuotaError
+        ? html`
+            <p class="error">
+              Too many authentication attempts. Please retry
+              <ui-timestamp timestamp=${this.error.getRetryAt()}></ui-timestamp>.
+            </p>
+          `
+        : this.error instanceof NetworkError
+        ? html`
+            <p class="error">You don't have internet access. Find some hotspot and try again.</p>
+          `
+        : this.error instanceof UnexpectedError
+        ? html` <p class="error">An unexpected error has occured (${this.error.message}).</p> `
         : html`
             <p class="disclaimer">
               By logging in, you are agreeing to our
@@ -57,10 +69,23 @@ export class ViewLogin extends LitElement {
   onEmailChange(e: KeyboardEvent) {
     const input = e.target as HTMLInputElement;
     this.email = input.value;
+
+    // we reset error if email changed.
+    this.error = undefined;
+    clearTimeout(this.errorTimeout);
   }
 
-  onError(e: CustomEvent<NpEmailLoginError>) {
-    alert(e.detail);
+  onError(e: CustomEvent<NoPwdError>) {
     this.error = e.detail;
+    clearTimeout(this.errorTimeout);
+
+    // default error duration
+    let duration = 5000;
+
+    if (this.error instanceof QuotaError) {
+      duration = this.error.getRetryAt() * 1000 - Date.now();
+    }
+
+    this.errorTimeout = setTimeout(() => (this.error = undefined), duration);
   }
 }
