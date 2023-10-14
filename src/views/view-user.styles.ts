@@ -22,6 +22,7 @@ export default css`
   aside p button {
     background-color: transparent;
     color: currentColor;
+    text-decoration: underline;
     border: none;
     padding: 0;
     font-size: var(--np-core-font-size-m);

@@ -4,12 +4,12 @@ import { customElement, property } from "lit/decorators.js";
 @customElement("ui-timestamp")
 export class UiTimestamp extends LitElement {
   @property({ type: Number }) timestamp?: number;
-  @property({ type: Number }) precision: number = 1;
+  @property({ type: Number }) precision: number = 0;
   private interval?: number;
 
   connectedCallback() {
     super.connectedCallback();
-    this.interval = setInterval(() => this.requestUpdate(), this.precision * 1000);
+    this.interval = setInterval(() => this.requestUpdate(), 1000);
   }
 
   disconnectedCallback(): void {
@@ -26,8 +26,8 @@ export class UiTimestamp extends LitElement {
     const delta = Math.round(this.timestamp - now);
     const interval = Math.abs(delta);
 
-    if (interval < this.precision) {
-      return html`<span class="value">now</span>`;
+    if (interval <= this.precision) {
+      return html`just <span class="value">now</span>`;
     }
 
     const intervalText = this.intervalToText(interval);

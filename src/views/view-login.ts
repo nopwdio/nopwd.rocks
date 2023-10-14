@@ -12,6 +12,8 @@ import {
   QuotaError,
   UnexpectedError,
   NoPwdError,
+  InvalidEmailError,
+  UnknownChallengeOrPasskeyError,
 } from "@apinet/nopwd-sdk/dist/flows/errors.js";
 
 declare global {
@@ -37,7 +39,16 @@ export class ViewLogin extends LitElement {
       <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
       <np-email-login email=${this.email} @np:error=${this.onError}></np-email-login>
 
-      ${this.error instanceof InvalidCodeParameterError
+      ${this.error instanceof InvalidEmailError
+        ? html` <p class="error">This email seems to be invalid.</p> `
+        : this.error instanceof UnknownChallengeOrPasskeyError
+        ? html`
+            <p class="error">
+              This passkey has been revoked. It may happens when it has not been used for a long
+              period of time.
+            </p>
+          `
+        : this.error instanceof InvalidCodeParameterError
         ? html`
             <p class="error">
               This link has expired or is invalid. Enter your email and try again.

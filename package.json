@@ -31,7 +31,7 @@
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {
-    "@apinet/nopwd-sdk": "^0.5.1",
+    "@apinet/nopwd-sdk": "^0.5.3",
     "lit": "^2.8.0"
   },
   "devDependencies": {

@@ -71,7 +71,7 @@ export class ViewUser extends LitElement {
                   ><ui-timestamp
                     class="value"
                     timestamp=${this.auth.access_token_payload.iat}
-                    precision="30"
+                    precision="10"
                   ></ui-timestamp>
                 </li>
                 <li class="claim">
@@ -79,7 +79,7 @@ export class ViewUser extends LitElement {
                   ><ui-timestamp
                     class="value"
                     timestamp=${this.auth.access_token_payload.exp}
-                    precision="30"
+                    precision="10"
                   ></ui-timestamp>
                 </li>
                 <li class="claim">
