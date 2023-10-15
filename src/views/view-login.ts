@@ -38,19 +38,25 @@ export class ViewLogin extends LitElement {
 
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
-      <np-email-login email=${this.email} @np:error=${this.onError}></np-email-login>
+      <np-email-login
+        email=${this.email}
+        @np:error=${this.onError}
+        resetduration="5000"
+      ></np-email-login>
 
       ${this.error instanceof MissingEmailError
-        ? html` <p class="error">You must provide an <strong>email address</strong>.</p> `
+        ? html` <p class="error">Enter your email and click on the button to authenticate.</p> `
         : this.error instanceof InvalidEmailError
         ? html`
-            <p class="error">This <strong>email</strong> seems to be <strong>invalid</strong>.</p>
+            <p class="error">
+              Enter a valid email address and click on the button to authenticate.
+            </p>
           `
         : this.error instanceof UnknownChallengeOrPasskeyError
         ? html`
             <p class="error">
-              This passkey has been revoked. It may happens when it has not been used for a long
-              period of time.
+              This access key has been revoked. This can happen when it has not been used for a long
+              time.
             </p>
           `
         : this.error instanceof InvalidCodeParameterError

@@ -58,6 +58,7 @@ export default css`
   p.error {
     padding: 0 var(--np-core-padding-l);
     font-weight: var(--np-core-font-weight-s);
+    color: var(--np-core-color-red-m);
   }
 
   p.error ui-timestamp {

@@ -40,8 +40,8 @@ export class DemoApp extends LitElement {
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
         <span class="version">
-          <span class="name">sdk version:</span>
-          <span class="value">${this.sdkVersion}</span>
+          <span class="name">nopwd-sdk:</span>
+          <span class="value">v${this.sdkVersion}</span>
         </span>
       </footer>
     `;
