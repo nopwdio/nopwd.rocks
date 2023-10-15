@@ -10,6 +10,7 @@ export default css`
     min-height: 100dvh;
 
     background-color: var(--np-core-color-grey-xl);
+    background-color: light-dark();
   }
 
   header,

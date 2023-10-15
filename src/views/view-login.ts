@@ -14,6 +14,7 @@ import {
   NoPwdError,
   InvalidEmailError,
   UnknownChallengeOrPasskeyError,
+  MissingEmailError,
 } from "@apinet/nopwd-sdk/dist/flows/errors.js";
 
 declare global {
@@ -39,8 +40,12 @@ export class ViewLogin extends LitElement {
       <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
       <np-email-login email=${this.email} @np:error=${this.onError}></np-email-login>
 
-      ${this.error instanceof InvalidEmailError
-        ? html` <p class="error">This email seems to be invalid.</p> `
+      ${this.error instanceof MissingEmailError
+        ? html` <p class="error">You must provide an <strong>email address</strong>.</p> `
+        : this.error instanceof InvalidEmailError
+        ? html`
+            <p class="error">This <strong>email</strong> seems to be <strong>invalid</strong>.</p>
+          `
         : this.error instanceof UnknownChallengeOrPasskeyError
         ? html`
             <p class="error">
@@ -71,7 +76,7 @@ export class ViewLogin extends LitElement {
             <p class="disclaimer">
               By logging in, you are agreeing to our
               <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
-              <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>
+              <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>.
             </p>
           `}
     `;

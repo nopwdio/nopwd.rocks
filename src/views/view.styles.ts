@@ -57,7 +57,7 @@ export default css`
 
   p.error {
     padding: 0 var(--np-core-padding-l);
-    font-weight: var(--np-core-font-weight-m);
+    font-weight: var(--np-core-font-weight-s);
   }
 
   p.error ui-timestamp {
@@ -65,8 +65,6 @@ export default css`
   }
 
   p.disclaimer {
-    font-size: var(--np-core-font-size-xs);
-    padding: 0 var(--np-core-padding-l);
     font-weight: var(--np-core-font-weight-s);
   }
 
