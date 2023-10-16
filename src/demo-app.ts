@@ -6,7 +6,7 @@ import "./views/view-login.js";
 import core from "./styles/core.styles.js";
 import app from "./demo-app.styles.js";
 import { bolt, github } from "./styles/icon.styles.js";
-import { AuthEvent } from "@apinet/nopwd-sdk/dist/components/np-email-login.js";
+import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-login.js";
 
 @customElement("demo-app")
 export class DemoApp extends LitElement {
@@ -40,7 +40,7 @@ export class DemoApp extends LitElement {
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
         <span class="version">
-          <span class="name">nopwd-sdk:</span>
+          <span class="name">@nopwdio/sdk-js:</span>
           <span class="value">v${this.sdkVersion}</span>
         </span>
       </footer>

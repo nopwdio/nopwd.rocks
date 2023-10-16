@@ -4,8 +4,8 @@ import { customElement, property } from "lit/decorators.js";
 import view from "./view.styles.js";
 import login from "./view-login.styles.js";
 
-import "@apinet/nopwd-sdk/dist/components/np-email-login.js";
-import "@apinet/nopwd-sdk/dist/components/np-passkey-login.js";
+import "@nopwdio/sdk-js/dist/components/np-email-login.js";
+import "@nopwdio/sdk-js/dist/components/np-passkey-login.js";
 import {
   InvalidCodeParameterError,
   NetworkError,

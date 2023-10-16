@@ -34,7 +34,7 @@ const pageDesc = {
   };
   
 import pkg from "./package.json" assert {type: "json"};
-const version = pkg.dependencies["@apinet/nopwd-sdk"].substring(1);
+const version = pkg.dependencies["@nopwdio/sdk-js"].substring(1);
 await fs.writeFile(`${outDir}/index.html`, index(pageDesc, version));
 
 // copy static
