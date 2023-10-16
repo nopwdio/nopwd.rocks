@@ -33,8 +33,11 @@ export default css`
     color: var(--np-core-color-grey-s);
   }
 
+  footer .version {
+    font-size: var(--np-core-font-size-s);
+  }
   footer .version .value {
-    font-weight: var(--np-core-font-weight-l);
+    font-weight: var(--np-core-font-weight-m);
   }
 
   main {
