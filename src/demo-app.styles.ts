@@ -30,10 +30,6 @@ export default css`
     align-items: center;
     justify-content: space-between;
     font-size: var(--np-core-font-size-s);
-  }
-
-  footer .version {
-    font-size: var(--np-core-font-size-xs);
     color: var(--np-core-color-grey-s);
   }
 
