@@ -28,7 +28,7 @@ await fs.mkdir(outDir, {recursive: true});
 // creating index file
 const pageDesc = {
     title: "Auth components demo | nopwd.rocks",
-    desc: "Demonstration of the authentication components that allow a user to authenticate with MagicLink and Passkeys.",
+    desc: "Play with Magic-link and Passkeys authentication",
     link: "https://nopwd.rocks",
     img: "https://nopwd.rocks/static/opengraph.webp",
   };
