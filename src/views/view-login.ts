@@ -15,7 +15,7 @@ import {
   InvalidEmailError,
   UnknownChallengeOrPasskeyError,
   MissingEmailError,
-} from "@nopwdio/sdk-js/dist/flows/errors.js";
+} from "@nopwdio/sdk-js/dist/core/errors.js";
 
 declare global {
   interface HTMLElementTagNameMap {
