@@ -31,7 +31,7 @@
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {
-    "@nopwdio/sdk-js": "^0.0.2",
+    "@nopwdio/sdk-js": "^0.0.3",
     "lit": "^2.8.0"
   },
   "devDependencies": {
