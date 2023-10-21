@@ -32,6 +32,10 @@ export class DemoApp extends LitElement {
           <a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github">${github}</a>
         </nav>
       </header>
+      <h1>
+        Magic-link and Passkeys <br />
+        authentication demo.
+      </h1>
       <main @np:auth=${this.onAuth} @np:logout=${this.onLogout}>
         ${!this.auth
           ? html`<view-login></view-login>`

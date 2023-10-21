@@ -8,8 +8,7 @@ export default css`
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
 
-    box-shadow: 15px 15px 30px var(--np-core-color-grey-l),
-      -15px -15px 30px var(--np-core-color-white);
+    box-shadow: 8px 8px 30px var(--np-core-color-grey-l), -8px -8px 30px var(--np-core-color-white);
   }
 
   h1 {

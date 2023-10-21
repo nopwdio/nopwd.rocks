@@ -10,7 +10,13 @@ export default css`
     min-height: 100dvh;
 
     background-color: var(--np-core-color-grey-xl);
-    background-color: light-dark();
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--np-core-color-grey-xs);
+    padding: 0;
+    margin: 0;
   }
 
   header,

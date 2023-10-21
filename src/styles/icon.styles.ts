@@ -27,3 +27,22 @@ export const bolt = svg`
     />
   </svg>
 `;
+
+export const bg = svg`
+<svg width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_10_26)">
+    <g filter="url(#filter0_f_10_26)">
+      <path d="M271.4 400H400V77.8L93 291L271.4 400Z" fill="#7C87F8"></path>
+      <path d="M400 77.8V0H160H0L93 291L400 77.8Z" fill="#6EEDEE"></path>
+      <path d="M0 400H271.4L93 291L0 0V400Z" fill="#0F43AF"></path>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_f_10_26" x="-159.933" y="-159.933" width="719.867" height="719.867" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+      <feGaussianBlur stdDeviation="79.9667" result="effect1_foregroundBlur_10_26"></feGaussianBlur>
+    </filter>
+  </defs>
+</svg>
+`;
