@@ -6,6 +6,7 @@ export default css`
     flex-flow: column;
     align-items: stretch;
     justify-content: space-between;
+    gap: var(--np-core-padding-l);
 
     min-height: 100dvh;
 
@@ -15,8 +16,12 @@ export default css`
   h1 {
     text-align: center;
     color: var(--np-core-color-grey-xs);
+    font-weight: var(--np-core-font-weight-l);
     padding: 0;
     margin: 0;
+  }
+
+  h1 strong {
   }
 
   header,

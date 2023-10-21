@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 @customElement("ui-timestamp")
@@ -89,6 +89,12 @@ export class UiTimestamp extends LitElement {
 
     return `${centuries} centuries`;
   }
+
+  static styles = css`
+    .value {
+      font-variant-numeric: tabular-nums;
+    }
+  `;
 }
 
 declare global {

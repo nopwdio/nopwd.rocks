@@ -51,7 +51,7 @@ export class ViewUser extends LitElement {
             </aside>
           `
         : html`
-            <details class="token">
+            <details class="token" open>
               <summary>Access token claims (RFC7519)</summary>
               <ul class="claims">
                 <li class="claim">

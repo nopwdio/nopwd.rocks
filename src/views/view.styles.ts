@@ -37,7 +37,7 @@ export default css`
   img.avatar {
     width: 100px;
     border: 2px solid white;
-    border-radius: 100%;
+    border-radius: 2em;
     margin: var(--np-core-padding-l) 0;
   }
 
