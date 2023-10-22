@@ -10,6 +10,7 @@ const entryPoints = [
 
 const PORT = 4321;
 const DEV_MODE = process.argv.includes("--dev");
+console.log(process.env);
 
 const CONFIG = {
     entryNames: "[dir]/[name]",
