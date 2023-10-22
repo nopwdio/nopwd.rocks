@@ -2,6 +2,7 @@
   "name": "@nopwdio/nopwd.rocks",
   "version": "0.1",
   "license": "MIT",
+  "author": "Adrien Pinet",
   "contributors": [
     "Adrien Pinet"
   ],
