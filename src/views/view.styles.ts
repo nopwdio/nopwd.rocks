@@ -56,7 +56,7 @@ export default css`
 
   p.error {
     padding: 0 var(--np-core-padding-l);
-    font-weight: var(--np-core-font-weight-s);
+    font-weight: var(--np-core-font-weight-m);
     color: var(--np-core-color-red-m);
   }
 

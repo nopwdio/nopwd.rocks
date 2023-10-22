@@ -17,12 +17,8 @@ export default css`
     text-align: center;
     color: var(--np-core-color-grey-s);
     font-weight: var(--np-core-font-weight-l);
-    text-shadow: 1px 4px 6px #ddd, 0 0 0 #000, 1px 4px 6px #ddd;
     padding: 0;
     margin: 0;
-  }
-
-  h1 strong {
   }
 
   header,
