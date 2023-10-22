@@ -45,10 +45,14 @@ export default css`
     color: var(--np-core-color-grey-s);
   }
 
-  footer .version {
+  footer nav {
+    display: flex;
+    gap: var(--np-core-padding-m);
+  }
+  footer :is(.version, .commit) {
     font-size: var(--np-core-font-size-s);
   }
-  footer .version .value {
+  footer :is(.version, .commit) .value {
     font-weight: var(--np-core-font-weight-m);
   }
 

@@ -11,6 +11,7 @@ import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-login.js";
 @customElement("demo-app")
 export class DemoApp extends LitElement {
   @property() sdkVersion?: string;
+  @property() commitHash?: string;
   @property({ type: Object }) auth?: AuthEvent;
 
   static styles = [core, app];
@@ -23,6 +24,8 @@ export class DemoApp extends LitElement {
     // we get the sdk version
     this.sdkVersion =
       document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
+    this.commitHash =
+      document.querySelector('meta[name="commit-hash"]')?.getAttribute("content") || "unknown";
   }
 
   render() {
@@ -47,10 +50,16 @@ export class DemoApp extends LitElement {
       </main>
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
-        <a href="https://github.com/nopwdio/sdk-js" class="version">
-          <span class="name">@nopwdio/sdk-js:</span>
-          <span class="value">v${this.sdkVersion}</span>
-        </a>
+        <nav>
+          <a href="https://github.com/nopwdio/sdk-js" class="version">
+            <span class="name">@nopwdio/sdk-js:</span>
+            <span class="value">v${this.sdkVersion}</span>
+          </a>
+          <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
+            <span class="name">build:</span>
+            <span class="value">${this.commitHash}</span>
+          </a>
+        </nav>
       </footer>
     `;
   }
