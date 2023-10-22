@@ -29,13 +29,14 @@ const createFaviconTags = () => {
   `;
 }
 
-export const index = (pageDesc, sdkVersion) => `
+export const index = (pageDesc, sdkVersion, commitHash) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1" />
     <meta name="sdk-version" content="${sdkVersion}" />
+    <meta name="commit-hash" content="${commitHash}" />
 
     <base href="/" />
     ${createOpenGraphTags(pageDesc)}

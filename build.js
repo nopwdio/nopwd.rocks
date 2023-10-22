@@ -10,7 +10,6 @@ const entryPoints = [
 
 const PORT = 4321;
 const DEV_MODE = process.argv.includes("--dev");
-console.log(process.env);
 
 const CONFIG = {
     entryNames: "[dir]/[name]",
@@ -33,10 +32,12 @@ const pageDesc = {
     link: "https://nopwd.rocks",
     img: "https://nopwd.rocks/static/opengraph.png",
   };
-  
+
+
 import pkg from "./package.json" assert {type: "json"};
 const version = pkg.dependencies["@nopwdio/sdk-js"].substring(1);
-await fs.writeFile(`${outDir}/index.html`, index(pageDesc, version));
+const hash = process.env.GITHUB_SHA ? process.env.GITHUB_SHA.slice(0,7) : "unknwown";
+await fs.writeFile(`${outDir}/index.html`, index(pageDesc, version, hash));
 
 // copy static
 await fs.cp("./static", `${outDir}/static`, {recursive: true});
