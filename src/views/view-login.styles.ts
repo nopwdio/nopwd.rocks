@@ -12,7 +12,6 @@ export default css`
   }
 
   np-email-login:not([state])::part(button) {
-    background-color: black;
-    background: linear-gradient(90deg, #7928ca, #8a0ccf, #ce1ad7, #df28af);
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
   }
 `;
