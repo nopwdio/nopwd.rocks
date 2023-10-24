@@ -36,7 +36,7 @@ export default css`
 
   footer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     font-size: var(--np-core-font-size-s);
     color: var(--np-core-color-grey-s);
@@ -54,11 +54,15 @@ export default css`
   }
   footer :is(.version, .commit) .value {
     font-weight: var(--np-core-font-weight-m);
+    padding: var(--np-core-padding-xs) var(--np-core-padding-s);
+    color: var(--np-core-color-grey-xl);
+    background-color: var(--np-core-color-grey-xs);
+    border-radius: var(--np-core-border-radius-s);
   }
 
   footer details {
     display: flex;
-    font-size: var(--np-core-font-size-s);
+    font-size: var(--np-core-font-size-m);
   }
 
   footer details summary {
