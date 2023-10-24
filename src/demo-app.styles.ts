@@ -62,7 +62,7 @@ export default css`
 
   footer details {
     display: flex;
-    font-size: var(--np-core-font-size-m);
+    font-size: var(--np-core-font-size-s);
   }
 
   footer details summary {

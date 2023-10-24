@@ -8,7 +8,8 @@ export default css`
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
 
-    box-shadow: 8px 8px 30px var(--np-core-color-grey-l), -8px -8px 30px var(--np-core-color-white);
+    box-shadow: 8px 8px 40px var(--np-core-color-grey-l), -8px -8px 40px var(--np-core-color-white);
+    border: 1px solid var(--np-core-color-white);
   }
 
   h1 {
@@ -36,8 +37,9 @@ export default css`
 
   img.avatar {
     width: 100px;
-    border: 2px solid white;
-    border-radius: 2em;
+    border-radius: var(--np-core-padding-xl);
+    border: 1px solid white;
+
     margin: var(--np-core-padding-l) 0;
   }
 
