@@ -50,16 +50,19 @@ export class DemoApp extends LitElement {
       </main>
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
-        <nav>
-          <a href="https://github.com/nopwdio/sdk-js" class="version">
-            <span class="name">@nopwdio/sdk-js:</span>
-            <span class="value">v${this.sdkVersion}</span>
-          </a>
-          <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
-            <span class="name">build:</span>
-            <span class="value">${this.commitHash}</span>
-          </a>
-        </nav>
+        <details>
+          <summary>info</summary>
+          <nav>
+            <a href="https://github.com/nopwdio/sdk-js" class="version">
+              <span class="name">@nopwdio/sdk-js:</span>
+              <span class="value">v${this.sdkVersion}</span>
+            </a>
+            <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
+              <span class="name">build:</span>
+              <span class="value">${this.commitHash}</span>
+            </a>
+          </nav>
+        </details>
       </footer>
     `;
   }

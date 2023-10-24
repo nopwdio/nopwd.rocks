@@ -16,6 +16,7 @@ export default css`
   h1 {
     text-align: center;
     color: var(--np-core-color-grey-s);
+    font-size: var(--np-core-font-size-l);
     font-weight: var(--np-core-font-weight-l);
     padding: 0;
     margin: 0;
@@ -45,11 +46,31 @@ export default css`
     display: flex;
     gap: var(--np-core-padding-m);
   }
+
   footer :is(.version, .commit) {
-    font-size: var(--np-core-font-size-s);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--np-core-padding-m);
   }
   footer :is(.version, .commit) .value {
     font-weight: var(--np-core-font-weight-m);
+  }
+
+  footer details {
+    display: flex;
+    font-size: var(--np-core-font-size-s);
+  }
+
+  footer details summary {
+    cursor: pointer;
+    text-align: right;
+    font-weight: var(--np-core-font-weight-l);
+  }
+
+  footer details nav {
+    margin-top: var(--np-core-padding-m);
+    flex-flow: column;
+    gap: var(--np-core-padding-s);
   }
 
   main {
