@@ -38,11 +38,7 @@ export class ViewLogin extends LitElement {
 
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-passkey-login @input=${this.onEmailChange} @np:error=${this.onError}></np-passkey-login>
-      <np-email-login
-        email=${this.email}
-        @np:error=${this.onError}
-        resetduration="5000"
-      ></np-email-login>
+      <np-email-login email=${this.email} @np:error=${this.onError}></np-email-login>
 
       ${this.error instanceof MissingEmailError
         ? html` <p class="error">Enter your email and click on the button to authenticate.</p> `
@@ -102,7 +98,7 @@ export class ViewLogin extends LitElement {
     clearTimeout(this.errorTimeout);
 
     // default error duration
-    let duration = 5000;
+    let duration = 2000;
 
     if (this.error instanceof QuotaError) {
       duration = this.error.getRetryAt() * 1000 - Date.now();
