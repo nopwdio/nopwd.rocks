@@ -6,12 +6,12 @@ export default css`
     align-items: center;
   }
 
-  np-passkey-login,
-  np-email-login {
+  np-passkey-conditional,
+  np-email-auth {
     width: 100%;
   }
 
-  np-email-login:not([state])::part(button) {
+  np-email-auth:not([state])::part(button) {
     background: linear-gradient(45deg, #3b82f6, #8b5cf6);
   }
 `;

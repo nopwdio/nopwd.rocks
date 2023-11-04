@@ -6,12 +6,12 @@ import user from "./view-user.styles.js";
 
 import "../components/ui-timestamp.js";
 
-import "@nopwdio/sdk-js/dist/components/np-email-login.js";
-import "@nopwdio/sdk-js/dist/components/np-passkey-login.js";
+import "@nopwdio/sdk-js/dist/components/np-email-auth.js";
+import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
 import "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
-import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-login.js";
+import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-auth.js";
 
 @customElement("view-user")
 export class ViewUser extends LitElement {

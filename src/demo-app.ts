@@ -6,7 +6,7 @@ import "./views/view-login.js";
 import core from "./styles/core.styles.js";
 import app from "./demo-app.styles.js";
 import { bolt, github } from "./styles/icon.styles.js";
-import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-login.js";
+import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-auth.js";
 
 @customElement("demo-app")
 export class DemoApp extends LitElement {
