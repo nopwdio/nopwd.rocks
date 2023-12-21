@@ -92,8 +92,8 @@ export class UiNotification extends LitElement {
       position: fixed;
       justify-content: space-between;
       align-items: center;
-      width: calc(100% - 2em);
-      margin-left: 1em;
+      width: calc(100% - 4em);
+      margin-left: 2em;
       box-sizing: border-box;
       top: -1em;
       transition: ease all 400ms;
@@ -101,10 +101,10 @@ export class UiNotification extends LitElement {
       border-radius: var(--np-core-padding-s);
     }
 
-    @media (min-width: 400px) {
+    @media (min-width: 320px) {
       :host {
-        width: 400px;
-        margin-left: calc(50% - 200px);
+        width: 320px;
+        margin-left: calc(50% - 160px);
       }
     }
 
