@@ -31,7 +31,20 @@ export default css`
 
   header {
     justify-content: flex-end;
-    font-size: var(--np-core-font-size-l);
+  }
+
+  header np-logout {
+    font-size: var(--np-core-font-size-xs);
+  }
+
+  np-logout::part(button) {
+    border: 1px solid transparent;
+  }
+
+  np-logout:not([state])::part(button) {
+    background: transparent;
+    border-color: var(--np-core-color-black);
+    color: var(--np-core-color-black);
   }
 
   footer {

@@ -6,6 +6,8 @@ import login from "./view-login.styles.js";
 
 import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
 import "@nopwdio/sdk-js/dist/components/np-email-auth.js";
+import { hideNotification, showNotification } from "../components/ui-notification.js";
+
 import {
   InvalidCodeParameterError,
   NetworkError,
@@ -26,9 +28,6 @@ declare global {
 @customElement("view-login")
 export class ViewLogin extends LitElement {
   @property() email: string = "";
-  @property({ type: Object }) error?: NoPwdError;
-  private errorTimeout?: number;
-
   static styles = [view, login];
 
   render() {
@@ -43,70 +42,54 @@ export class ViewLogin extends LitElement {
       ></np-passkey-conditional>
       <np-email-auth email=${this.email} @np:error=${this.onError}></np-email-auth>
 
-      ${this.error instanceof MissingEmailError
-        ? html` <p class="error">Enter your email and click on the button to authenticate.</p> `
-        : this.error instanceof InvalidEmailError
-        ? html`
-            <p class="error">
-              Enter a valid email address and click on the button to authenticate.
-            </p>
-          `
-        : this.error instanceof UnknownChallengeOrPasskeyError
-        ? html`
-            <p class="error">
-              This access key has been revoked. This can happen when it has not been used for a long
-              time.
-            </p>
-          `
-        : this.error instanceof InvalidCodeParameterError
-        ? html`
-            <p class="error">
-              This link has expired or is invalid. Enter your email and try again.
-            </p>
-          `
-        : this.error instanceof QuotaError
-        ? html`
-            <p class="error">
-              Too many authentication attempts. Please retry
-              <ui-timestamp timestamp=${this.error.getRetryAt()}></ui-timestamp>.
-            </p>
-          `
-        : this.error instanceof NetworkError
-        ? html`
-            <p class="error">You don't have internet access. Find some hotspot and try again.</p>
-          `
-        : this.error instanceof UnexpectedError
-        ? html` <p class="error">An unexpected error has occured (${this.error.message}).</p> `
-        : html`
-            <p class="disclaimer">
-              By logging in, you are agreeing to our
-              <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
-              <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>.
-            </p>
-          `}
+      <p class="disclaimer">
+        By logging in, you are agreeing to our
+        <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
+        <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>.
+      </p>
     `;
   }
 
   onEmailChange(e: KeyboardEvent) {
     const input = e.target as HTMLInputElement;
     this.email = input.value;
-
-    // we reset error if email changed.
-    this.error = undefined;
-    clearTimeout(this.errorTimeout);
+    hideNotification(this);
   }
 
   onError(e: CustomEvent<NoPwdError>) {
-    this.error = e.detail;
-    clearTimeout(this.errorTimeout);
-
-    // default error duration
-    let duration = 2000;
-
-    if (this.error instanceof QuotaError) {
-      duration = this.error.getRetryAt() * 1000 - Date.now();
+    if (e.detail instanceof MissingEmailError) {
+      showNotification(
+        this,
+        "Missing email address",
+        "Enter your email and click on the button to authenticate."
+      );
+      return;
     }
 
-    this.errorTimeout = setTimeout(() => (this.error = undefined), duration);
+    if (e.detail instanceof InvalidEmailError) {
+      showNotification(
+        this,
+        "invalid email address",
+        "Enter a valid email address and click on the button to authenticate."
+      );
+      return;
+    }
+
+    if (e.detail instanceof NetworkError) {
+      showNotification(this, "No connection", "Find some hotspot and try again.");
+      return;
+    }
+
+    if (e.detail instanceof InvalidCodeParameterError) {
+      showNotification(this, "Expired or malformed link", "Enter your email and try again.");
+      return;
+    }
+
+    if (e.detail instanceof QuotaError) {
+      showNotification(this, "Too many attempts", "Wait a moment and try again.");
+      return;
+    }
+
+    showNotification(this, "Unexpected error", "Please try again and get lucky :)");
   }
 }

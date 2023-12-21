@@ -8,8 +8,8 @@ export default css`
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
 
-    box-shadow: 8px 8px 40px var(--np-core-color-grey-l), -8px -8px 40px var(--np-core-color-white);
-    border: 1px solid var(--np-core-color-white);
+    background: linear-gradient(-45deg, transparent 60%, white);
+    box-shadow: 0px 0px 20px var(--np-core-color-white);
   }
 
   h1 {
@@ -32,22 +32,23 @@ export default css`
     font-weight: var(--np-core-font-weight-m);
     font-size: var(--np-core-font-size-m);
     margin: 0;
-    text-align: center;
+    text-align: left;
   }
 
   img.avatar {
     width: 100px;
-    border-radius: var(--np-core-padding-xl);
-    border: 1px solid white;
+    border-radius: 100%;
+    background: transparent;
 
     margin: var(--np-core-padding-l) 0;
+    box-shadow: 0px 0px 20px var(--np-core-color-white);
   }
 
   p {
     font-size: var(--np-core-font-size-s);
     margin: var(--np-core-padding-s) 0;
     color: var(--np-core-color-grey-s);
-    text-align: center;
+    text-align: left;
   }
 
   p.info {
@@ -56,18 +57,9 @@ export default css`
     border-left: 1px solid var(--np-core-color-grey-l);
   }
 
-  p.error {
-    padding: 0 var(--np-core-padding-l);
-    font-weight: var(--np-core-font-weight-m);
-    color: var(--np-core-color-red-m);
-  }
-
-  p.error ui-timestamp {
-    font-weight: var(--np-core-font-weight-l);
-  }
-
   p.disclaimer {
     font-weight: var(--np-core-font-weight-s);
+    text-align: center;
   }
 
   p.disclaimer a {

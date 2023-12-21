@@ -1,25 +1,33 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import "./views/view-login.js";
+import "@nopwdio/sdk-js/dist/components/np-logout.js";
+
+import "./components/ui-notification.js";
 
 import core from "./styles/core.styles.js";
 import app from "./demo-app.styles.js";
 import { bolt, github } from "./styles/icon.styles.js";
-import { AuthEvent } from "@nopwdio/sdk-js/dist/components/np-email-auth.js";
+import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
+import { showNotification } from "./components/ui-notification.js";
+import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 @customElement("demo-app")
 export class DemoApp extends LitElement {
   @property() sdkVersion?: string;
   @property() commitHash?: string;
-  @property({ type: Object }) auth?: AuthEvent;
+  @property({ type: Object }) session?: Session | null;
 
   static styles = [core, app];
 
-  connectedCallback(): void {
+  async connectedCallback() {
     super.connectedCallback();
+
     // we preload the view-user
     import("./views/view-user.js");
+    import("./views/view-login.js");
+
+    this.session = await get();
 
     // we get the sdk version
     this.sdkVersion =
@@ -30,21 +38,20 @@ export class DemoApp extends LitElement {
 
   render() {
     return html`
-      <header>
-        <nav>
-          <a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github">${github}</a>
-        </nav>
+      <ui-notification></ui-notification>
+      <header @np:logout=${this.onLogout}>
+        ${this.session
+          ? html`<np-logout></np-logout>`
+          : html`<a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github"
+              >${github}</a
+            >`}
       </header>
-      <main @np:auth=${this.onAuth} @np:logout=${this.onLogout}>
-        ${!this.auth
-          ? html`
-              <h1>
-                <strong>Magic-link</strong> and <strong>Passkeys</strong> <br />
-                authentication demo.
-              </h1>
-              <view-login></view-login>
-            `
-          : html`<view-user .auth=${this.auth}></view-user>`}
+      <main @np:login=${this.onLogin}>
+        ${this.session === undefined
+          ? html`please wait...`
+          : this.session === null
+          ? html`<view-login></view-login>`
+          : html`<view-user .session=${this.session}></view-user>`}
       </main>
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
@@ -65,14 +72,31 @@ export class DemoApp extends LitElement {
     `;
   }
 
-  async onAuth(e: CustomEvent) {
-    // we ensure view-user is loaded
-    await import("./views/view-user.js");
-    this.auth = e.detail;
+  async onLogin(e: CustomEvent<Session>) {
+    this.session = e.detail;
+
+    showNotification(
+      this,
+      `Welcome ${this.session.token_payload.sub}!`,
+      this.session.suggest_passkeys
+        ? `Easy right? Go create a passkey to an even smoother experience.`
+        : `Go to 'dev.nopwd.io' and get started, it's free :)`,
+      6000
+    );
+  }
+
+  async onRegister(e: CustomEvent<RegisterEvent>) {
+    showNotification(
+      this,
+      `Passkey created`,
+      `You can now use it to log in with fingerprint or Face ID.`,
+      6000
+    );
   }
 
   onLogout(e: CustomEvent) {
-    this.auth = undefined;
+    this.session = null;
+    showNotification(this, `You are logged out`, `We will be glad to see you again :)`);
   }
 }
 

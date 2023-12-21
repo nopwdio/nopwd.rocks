@@ -16,7 +16,7 @@ export default css`
     display: flex;
     flex-flow: column;
     margin: var(--np-core-padding-l) 0 0 0;
-    gap: var(--np-core-padding-m);
+    gap: var(--np-core-padding-xs);
   }
 
   aside p button {
