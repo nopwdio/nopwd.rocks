@@ -75,14 +75,7 @@ export class DemoApp extends LitElement {
   async onLogin(e: CustomEvent<Session>) {
     this.session = e.detail;
 
-    showNotification(
-      this,
-      `Welcome ${this.session.token_payload.sub}!`,
-      this.session.suggest_passkeys
-        ? `Easy right? Go create a passkey to an even smoother experience.`
-        : `Go to 'dev.nopwd.io' and get started, it's free :)`,
-      6000
-    );
+    showNotification(this, `Welcome ${this.session.token_payload.sub}!`, undefined, 6000);
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
