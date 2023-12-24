@@ -74,8 +74,16 @@ export class DemoApp extends LitElement {
 
   async onLogin(e: CustomEvent<Session>) {
     this.session = e.detail;
+    const vip = isVIP(this.session.token_payload.sub);
 
-    showNotification(this, `Welcome ${this.session.token_payload.sub}!`, undefined, 6000);
+    showNotification(
+      this,
+      vip ? `Wahooouuu, t'es venue!` : `Welcome!`,
+      vip
+        ? "T'oublieras pas le feedback hein??"
+        : `You are now authenticated as ${this.session.token_payload.sub}`,
+      6000
+    );
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
@@ -92,6 +100,19 @@ export class DemoApp extends LitElement {
     showNotification(this, `You are logged out`, `We will be glad to see you again :)`);
   }
 }
+
+const isVIP = function (email: string) {
+  const vips: number[] = [
+    //24763, // api
+    40254, // zam
+  ];
+
+  const vip = email.split("").reduce((acc, curr, i) => {
+    return acc + curr.charCodeAt(0) * (i + 1);
+  }, 0);
+
+  return vips.includes(vip);
+};
 
 declare global {
   interface HTMLElementTagNameMap {

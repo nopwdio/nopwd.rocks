@@ -32,7 +32,7 @@
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {
-    "@nopwdio/sdk-js": "^0.3.9"
+    "@nopwdio/sdk-js": "^0.4.0"
   },
   "devDependencies": {
     "esbuild": "^0.19.4",
