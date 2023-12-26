@@ -46,12 +46,12 @@ export class DemoApp extends LitElement {
               >${github}</a
             >`}
       </header>
-      <main @np:login=${this.onLogin}>
+      <main @np:login=${this.onLogin} @np:logout=${this.onLogout}>
         ${this.session === undefined
           ? html`please wait...`
           : this.session === null
           ? html`<view-login></view-login>`
-          : html`<view-user .session=${this.session}></view-user>`}
+          : html`<view-user></view-user>`}
       </main>
       <footer>
         <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>

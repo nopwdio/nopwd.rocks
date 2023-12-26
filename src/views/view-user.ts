@@ -11,14 +11,19 @@ import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
 import "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
-import { Session } from "@nopwdio/sdk-js/dist/core/session.js";
+import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
 
 @customElement("view-user")
 export class ViewUser extends LitElement {
-  @property({ type: Object }) session?: Session;
+  @property({ type: Object }) session?: Session | null = undefined;
   @property({ type: Object }) createdPasskey?: RegisterEvent;
 
   static styles = [view, user];
+
+  async connectedCallback() {
+    super.connectedCallback();
+    this.session = await get();
+  }
 
   onRegister(e: CustomEvent<RegisterEvent>) {
     this.createdPasskey = e.detail;
@@ -39,11 +44,12 @@ export class ViewUser extends LitElement {
       ${this.session.suggest_passkeys
         ? this.createdPasskey
           ? html`<aside>
-              <h3>Congratulation!</h3>
+              <h3>Congratulation 🎉</h3>
               <p>
                 You just have created a brand new passkey. To use it, logout and try to log in
                 again. You will be ask to select this passkey to authenticate.
               </p>
+              <np-logout>Logout and test it</np-logout>
             </aside>`
           : html`<aside>
               <h3>Enable fingerprint or Face ID on this device?</h3>
