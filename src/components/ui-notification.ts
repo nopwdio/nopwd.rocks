@@ -92,13 +92,23 @@ export class UiNotification extends LitElement {
       position: fixed;
       justify-content: space-between;
       align-items: center;
-      width: calc(100% - 4em);
-      margin-left: 2em;
+      width: calc(100% - 2em);
+      margin-left: 1em;
       box-sizing: border-box;
       top: -1em;
       transition: ease all 400ms;
       padding: var(--np-core-padding-s) var(--np-core-padding-s);
-      border-radius: var(--np-core-padding-s);
+      border-radius: 0 var(--np-core-padding-xs) var(--np-core-padding-xs) 0;
+      border-left: 1px solid var(--np-core-color-grey-s);
+    }
+
+    :host {
+      color: var(--np-core-color-grey-s);
+      background-color: hsl(0, 100%, 100%, 50%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      box-shadow: 4px 4px 20px var(--np-core-color-grey-l),
+        -8px -8px 40px var(--np-core-color-white);
     }
 
     @media (min-width: 320px) {
@@ -117,15 +127,6 @@ export class UiNotification extends LitElement {
       display: flex;
       opacity: 1;
       top: 1em;
-    }
-
-    :host {
-      color: black;
-      background-color: hsl(0, 100%, 100%, 20%);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-      box-shadow: 8px 8px 40px var(--np-core-color-grey-l),
-        -8px -8px 40px var(--np-core-color-white);
     }
 
     main {

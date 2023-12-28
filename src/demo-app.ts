@@ -22,7 +22,6 @@ export class DemoApp extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback();
-
     // we preload the view-user
     import("./views/view-user.js");
     import("./views/view-login.js");
