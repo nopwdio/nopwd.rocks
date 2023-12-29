@@ -26,7 +26,6 @@ const createFaviconTags = () => {
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png"/>
     <link rel="icon" type="image/svg+xml" href="/static/favicon.ico"/>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/static/apple-touch-icon.png"/>
-    <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#7928ca"/>
   `;
 }
 

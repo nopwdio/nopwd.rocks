@@ -9,7 +9,7 @@ export default css`
     padding: var(--np-core-padding-m);
 
     background: linear-gradient(-45deg, transparent 60%, white);
-    box-shadow: 0px 0px 20px var(--np-core-color-white);
+    box-shadow: 0px 0px 16px var(--np-core-color-white);
   }
 
   h1 {

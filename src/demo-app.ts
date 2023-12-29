@@ -73,14 +73,12 @@ export class DemoApp extends LitElement {
 
   async onLogin(e: CustomEvent<Session>) {
     this.session = e.detail;
-    const vip = isVIP(this.session.token_payload.sub);
+    //const vip = isVIP(this.session.token_payload.sub);
 
     showNotification(
       this,
-      vip ? `Wahooouuu, t'es venue!` : `Welcome!`,
-      vip
-        ? "T'oublieras pas le feedback hein??"
-        : `You are now authenticated as ${this.session.token_payload.sub}`,
+      `Welcome!`,
+      `You are now authenticated as ${this.session.token_payload.sub}`,
       6000
     );
   }
@@ -88,7 +86,7 @@ export class DemoApp extends LitElement {
   async onRegister(e: CustomEvent<RegisterEvent>) {
     showNotification(
       this,
-      `Passkey created`,
+      `Passkey has been created`,
       `You can now use it to log in with fingerprint or Face ID.`,
       6000
     );
@@ -102,7 +100,7 @@ export class DemoApp extends LitElement {
 
 const isVIP = function (email: string) {
   const vips: number[] = [
-    //24763, // api
+    24763, // api
     40254, // zam
   ];
 

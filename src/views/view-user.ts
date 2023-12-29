@@ -81,7 +81,7 @@ export class ViewUser extends LitElement {
             ><ui-timestamp
               class="value"
               timestamp=${this.session.created_at}
-              precision="10"
+              precision="60"
             ></ui-timestamp>
           </li>
           <li class="claim">
@@ -89,7 +89,7 @@ export class ViewUser extends LitElement {
             ><ui-timestamp
               class="value"
               timestamp=${this.session.expires_at}
-              precision="10"
+              precision="60"
             ></ui-timestamp>
           </li>
           <li class="claim">

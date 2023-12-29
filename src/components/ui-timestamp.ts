@@ -4,7 +4,7 @@ import { customElement, property } from "lit/decorators.js";
 @customElement("ui-timestamp")
 export class UiTimestamp extends LitElement {
   @property({ type: Number }) timestamp?: number;
-  @property({ type: Number }) precision: number = 0;
+  @property({ type: Number }) precision: number = 60;
   private interval?: number;
 
   connectedCallback() {
