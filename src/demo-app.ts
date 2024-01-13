@@ -45,6 +45,7 @@ export class DemoApp extends LitElement {
               >${github}</a
             >`}
       </header>
+
       <main @np:login=${this.onLogin} @np:logout=${this.onLogout}>
         ${this.session === undefined
           ? html`please wait...`
@@ -73,14 +74,11 @@ export class DemoApp extends LitElement {
 
   async onLogin(e: CustomEvent<Session>) {
     this.session = e.detail;
-    //const vip = isVIP(this.session.token_payload.sub);
+    const vip = isVIP(this.session.token_payload.sub);
 
-    showNotification(
-      this,
-      `Welcome!`,
-      `You are now authenticated as ${this.session.token_payload.sub}`,
-      6000
-    );
+    if (vip) {
+      showNotification(this, `Azy!`, `tu m'énerves...`, 6000);
+    }
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
