@@ -12,6 +12,7 @@ import "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
+import { shieldCheck } from "../styles/icon.styles.js";
 
 @customElement("view-user")
 export class ViewUser extends LitElement {
@@ -35,8 +36,7 @@ export class ViewUser extends LitElement {
     }
 
     return html`
-      <h1>Hello!</h1>
-      <img class="avatar" src="/static/avatar-success.webp" alt="well done" />
+      <span class="avatar">${shieldCheck}</span>
       <h2>
         You are now authenticated as <strong>${this.session.token_payload.sub}</strong> on
         <strong>${this.session.token_payload.aud}</strong>

@@ -15,7 +15,7 @@ import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-regist
 @customElement("demo-app")
 export class DemoApp extends LitElement {
   @property() sdkVersion?: string;
-  @property() commitHash?: string;
+  @property() appVersion?: string;
   @property({ type: Object }) session?: Session | null;
 
   static styles = [core, app];
@@ -31,14 +31,15 @@ export class DemoApp extends LitElement {
     // we get the sdk version
     this.sdkVersion =
       document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
-    this.commitHash =
-      document.querySelector('meta[name="commit-hash"]')?.getAttribute("content") || "unknown";
+    this.appVersion =
+      document.querySelector('meta[name="app-version"]')?.getAttribute("content") || "unknown";
   }
 
   render() {
     return html`
       <ui-notification></ui-notification>
       <header @np:logout=${this.onLogout}>
+        <a href="https://nopwd.io">${bolt} by nopwd.io</a>
         ${this.session
           ? html`<np-logout></np-logout>`
           : html`<a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github"
@@ -54,9 +55,9 @@ export class DemoApp extends LitElement {
           : html`<view-user></view-user>`}
       </main>
       <footer>
-        <nav><a href="https://nopwd.io">${bolt} by nopwd.io</a></nav>
+        <nav></nav>
         <details>
-          <summary>stack</summary>
+          <summary>info</summary>
           <nav>
             <a href="https://github.com/nopwdio/sdk-js" class="version">
               <span class="name">@nopwdio/sdk-js:</span>
@@ -64,7 +65,7 @@ export class DemoApp extends LitElement {
             </a>
             <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
               <span class="name">demo app:</span>
-              <span class="value">${this.commitHash}</span>
+              <span class="value">v${this.appVersion}</span>
             </a>
           </nav>
         </details>
@@ -92,7 +93,7 @@ export class DemoApp extends LitElement {
 
   onLogout(e: CustomEvent) {
     this.session = null;
-    showNotification(this, `You are logged out`, `We will be glad to see you again :)`);
+    showNotification(this, `You are logged out`, `We hope to see you soon!`);
   }
 }
 

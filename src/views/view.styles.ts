@@ -4,12 +4,13 @@ export default css`
   :host {
     display: flex;
     flex-flow: column;
-    width: 260px;
+    max-width: 280px;
+    box-sizing: border-box;
     border-radius: var(--np-core-border-radius-m);
     padding: var(--np-core-padding-m);
 
-    background: linear-gradient(-45deg, transparent 60%, white);
-    box-shadow: 0px 0px 16px var(--np-core-color-white);
+    background: white;
+    box-shadow: 0px 0px 2px var(--np-core-color-white);
   }
 
   h1 {
@@ -35,13 +36,16 @@ export default css`
     text-align: left;
   }
 
-  img.avatar {
-    width: 100px;
-    border-radius: 100%;
-    background: transparent;
+  span.avatar {
+    margin-top: var(--np-core-padding-m);
+    padding: var(--np-core-padding-m);
+    border: 2px solid transparent;
+    border-radius: var(--np-core-padding-s);
+  }
 
-    margin: var(--np-core-padding-l) 0;
-    box-shadow: 0px 0px 20px var(--np-core-color-white);
+  span.avatar .icon {
+    width: var(--np-core-font-size-xl);
+    height: var(--np-core-font-size-xl);
   }
 
   p {

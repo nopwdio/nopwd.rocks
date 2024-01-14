@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { cross } from "../styles/icon.styles";
+import { bell, cross } from "../styles/icon.styles";
 
 export const showNotification = function (
   el: HTMLElement,
@@ -79,6 +79,7 @@ export class UiNotification extends LitElement {
 
   render() {
     return html`
+      ${bell}
       <main>
         <h1>${this.header}</h1>
         ${this.description ? html`<p>${this.description}</p>` : html``}
@@ -98,23 +99,22 @@ export class UiNotification extends LitElement {
       top: -1em;
       transition: ease all 400ms;
       padding: var(--np-core-padding-s) var(--np-core-padding-s);
-      border-radius: 0 var(--np-core-padding-xs) var(--np-core-padding-xs) 0;
-      border-left: 1px solid var(--np-core-color-grey-s);
+      border: 1px solid var(--np-core-color-white);
+      border-radius: var(--np-core-padding-l);
+      gap: var(--np-core-padding-s);
+
+      color: var(--np-core-color-grey-s);
+      background-color: var(--np-core-color-white);
+      box-shadow: 0px 0px 10px var(--np-core-color-white);
     }
 
     :host {
-      color: var(--np-core-color-grey-s);
-      background-color: hsl(0, 100%, 100%, 50%);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-      box-shadow: 4px 4px 20px var(--np-core-color-grey-l),
-        -8px -8px 40px var(--np-core-color-white);
     }
 
-    @media (min-width: 320px) {
+    @media (min-width: 280px) {
       :host {
-        width: 320px;
-        margin-left: calc(50% - 160px);
+        width: 280px;
+        margin-left: calc(50% - 140px);
       }
     }
 
@@ -129,8 +129,17 @@ export class UiNotification extends LitElement {
       top: 1em;
     }
 
+    .icon {
+      width: 1em;
+    }
+
+    .icon--bell {
+      font-size: var(--np-core-font-size-l);
+    }
+
     main {
       display: flex;
+      flex: 1;
       flex-flow: column;
       gap: var(--np-core-padding-xs);
     }
@@ -142,21 +151,17 @@ export class UiNotification extends LitElement {
     }
 
     h1 {
-      font-size: var(--np-core-font-size-m);
+      font-size: var(--np-core-font-size-s);
       font-weight: var(--np-core-font-weight-l);
     }
 
     p {
-      font-size: var(--np-core-font-size-s);
+      font-size: var(--np-core-font-size-xs);
       font-weight: var(--np-core-font-weight-m);
     }
 
-    .icon {
-      width: 1em;
-    }
-
     button {
-      color: var(--np-core-color-grey-m);
+      color: var(--np-core-color-grey-l);
       display: flex;
       align-items: center;
       padding: 0;

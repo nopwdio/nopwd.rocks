@@ -35,9 +35,9 @@ const pageDesc = {
 
 
 import pkg from "./package.json" assert {type: "json"};
-const version = pkg.dependencies["@nopwdio/sdk-js"].substring(1);
-const hash = process.env.GITHUB_SHA ? process.env.GITHUB_SHA.slice(0,7) : "unknwown";
-await fs.writeFile(`${outDir}/index.html`, index(pageDesc, version, hash));
+const sdkVersion = pkg.dependencies["@nopwdio/sdk-js"].substring(1);
+const appVersion = pkg.version;
+await fs.writeFile(`${outDir}/index.html`, index(pageDesc, sdkVersion, appVersion));
 
 // copy static
 await fs.cp("./static", `${outDir}/static`, {recursive: true});

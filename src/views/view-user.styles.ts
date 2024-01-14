@@ -5,6 +5,9 @@ export default css`
     gap: var(--np-core-padding-s);
     align-items: center;
   }
+  span.avatar {
+    color: var(--np-core-color-green-m);
+  }
 
   np-passkey-register,
   details {

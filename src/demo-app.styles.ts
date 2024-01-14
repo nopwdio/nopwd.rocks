@@ -9,8 +9,7 @@ export default css`
     gap: var(--np-core-padding-l);
 
     min-height: 100dvh;
-
-    background-color: var(--np-core-color-grey-xl);
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
   }
 
   h1 {
@@ -25,16 +24,16 @@ export default css`
   header,
   footer {
     display: flex;
-
     padding: var(--np-core-padding-m);
+    color: var(--np-core-color-white);
   }
 
   header {
-    justify-content: flex-end;
+    justify-content: space-between;
+    font-size: var(--np-core-font-size-s);
   }
 
   header np-logout {
-    font-size: var(--np-core-font-size-xs);
   }
 
   np-logout::part(button) {
@@ -43,8 +42,14 @@ export default css`
 
   np-logout:not([state])::part(button) {
     background: transparent;
-    border-color: var(--np-core-color-black);
-    color: var(--np-core-color-black);
+    border-color: var(--np-core-color-white);
+    color: var(--np-core-color-white);
+  }
+
+  np-logout[state="loggingout"]::part(button) {
+    background: transparent;
+    border-color: transparent;
+    color: var(--np-core-color-white);
   }
 
   footer {
@@ -52,7 +57,6 @@ export default css`
     align-items: flex-start;
     justify-content: space-between;
     font-size: var(--np-core-font-size-s);
-    color: var(--np-core-color-grey-s);
   }
 
   footer nav {
@@ -81,7 +85,6 @@ export default css`
   footer details summary {
     cursor: pointer;
     text-align: right;
-    font-weight: var(--np-core-font-weight-l);
   }
 
   footer details nav {
@@ -95,11 +98,11 @@ export default css`
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    color: white;
   }
 
   .icon {
     width: var(--np-core-font-size-m);
-    height: var(--np-core-font-size-m);
   }
 
   a {
@@ -109,10 +112,10 @@ export default css`
     gap: var(--np-core-icon-gap);
 
     text-decoration: none;
-    color: var(--np-core-color-grey-s);
+    color: var(--np-core-color-grey-xl);
   }
 
   a:hover {
-    color: var(--np-core-color-grey-xs);
+    color: var(--np-core-color-white);
   }
 `;

@@ -6,6 +6,10 @@ export default css`
     align-items: center;
   }
 
+  span.avatar {
+    color: var(--np-core-color-grey-m);
+  }
+
   np-passkey-conditional,
   np-email-auth {
     width: 100%;

@@ -18,6 +18,7 @@ import {
   UnknownChallengeOrPasskeyError,
   MissingEmailError,
 } from "@nopwdio/sdk-js/dist/core/errors.js";
+import { shieldCheck, shieldExclamation, user } from "../styles/icon.styles.js";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -32,8 +33,7 @@ export class ViewLogin extends LitElement {
 
   render() {
     return html`
-      <h1>Welcome!</h1>
-      <img class="avatar" src="/static/avatar-welcome.webp" alt="welcome" />
+      <span class="avatar">${user}</span>
 
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-passkey-conditional
@@ -58,11 +58,7 @@ export class ViewLogin extends LitElement {
 
   onError(e: CustomEvent<NoPwdError>) {
     if (e.detail instanceof MissingEmailError) {
-      showNotification(
-        this,
-        "Missing email address",
-        "Enter your email and click on the button to authenticate."
-      );
+      showNotification(this, "Missing email address", "Enter your email to authenticate.");
       return;
     }
 
@@ -70,7 +66,7 @@ export class ViewLogin extends LitElement {
       showNotification(
         this,
         "invalid email address",
-        "Enter a valid email address and click on the button to authenticate."
+        "Enter a valid email address to authenticate."
       );
       return;
     }
