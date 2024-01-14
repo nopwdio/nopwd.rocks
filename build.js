@@ -30,7 +30,7 @@ const pageDesc = {
     title: "Authentication components demo | nopwd.rocks",
     desc: "Try our magic-link and passkey authentication interactive demo.",
     link: "https://nopwd.rocks",
-    img: "https://nopwd.rocks/static/opengraph.png",
+    img: "https://nopwd.rocks/static/opengraph.gif",
   };
 
 
