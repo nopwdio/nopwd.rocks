@@ -34,6 +34,7 @@ export default css`
   }
 
   header np-logout {
+    font-size: var(--np-core-font-size-s);
   }
 
   np-logout::part(button) {
