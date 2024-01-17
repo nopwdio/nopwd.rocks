@@ -10,6 +10,8 @@ export default css`
 
     min-height: 100dvh;
     background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+    background-image: url("/static/bg.svg");
+    background-size: cover;
   }
 
   h1 {

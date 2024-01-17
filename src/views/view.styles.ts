@@ -7,10 +7,15 @@ export default css`
     max-width: 280px;
     box-sizing: border-box;
     border-radius: var(--np-core-border-radius-m);
+    border: 1px solid var(--np-core-color-white);
     padding: var(--np-core-padding-m);
 
     background: white;
     box-shadow: 0px 0px 2px var(--np-core-color-white);
+
+    background-color: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
   }
 
   h1 {
