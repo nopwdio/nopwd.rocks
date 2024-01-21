@@ -78,7 +78,16 @@ export class DemoApp extends LitElement {
     const vip = isVIP(this.session.token_payload.sub);
 
     if (vip) {
-      showNotification(this, `Azy!`, `tu m'énerves...`, 6000);
+      showNotification(this, `Alors Pierre!`, `Quoi de neuf?`, 6000);
+    }
+
+    // TODO: remove when safari fixed the bug 257176
+    if (this.session.suggest_passkeys) {
+      // disgusting solution but the page needs to be refreshed for safari
+      // if a conditional ui is started while creating a passkey
+      // see https://bugs.webkit.org/show_bug.cgi?id=257176
+      // shoud be fixed soon:)
+      location.reload();
     }
   }
 

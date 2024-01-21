@@ -100,7 +100,7 @@ export class UiNotification extends LitElement {
       transition: ease all 400ms;
       padding: var(--np-core-padding-s) var(--np-core-padding-s);
       border: 1px solid var(--np-core-color-white);
-      border-radius: var(--np-core-padding-l);
+      border-radius: var(--np-core-padding-xl);
       gap: var(--np-core-padding-s);
 
       color: var(--np-core-color-grey-s);

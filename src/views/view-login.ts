@@ -17,6 +17,7 @@ import {
   InvalidEmailError,
   UnknownChallengeOrPasskeyError,
   MissingEmailError,
+  AbortError,
 } from "@nopwdio/sdk-js/dist/core/errors.js";
 import { shieldCheck, shieldExclamation, user } from "../styles/icon.styles.js";
 
@@ -39,8 +40,13 @@ export class ViewLogin extends LitElement {
       <np-passkey-conditional
         @input=${this.onEmailChange}
         @np:error=${this.onError}
+        lifetime="604800"
       ></np-passkey-conditional>
-      <np-email-auth email=${this.email} @np:error=${this.onError}></np-email-auth>
+      <np-email-auth
+        email=${this.email}
+        @np:error=${this.onError}
+        lifetime="604800"
+      ></np-email-auth>
 
       <p class="disclaimer">
         By logging in, you are agreeing to our
@@ -83,6 +89,10 @@ export class ViewLogin extends LitElement {
 
     if (e.detail instanceof QuotaError) {
       showNotification(this, "Too many attempts", "Wait a moment and try again.");
+      return;
+    }
+
+    if (e.detail instanceof AbortError) {
       return;
     }
 
