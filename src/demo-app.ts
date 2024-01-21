@@ -43,7 +43,7 @@ export class DemoApp extends LitElement {
         ${this.session
           ? html`<np-logout></np-logout>`
           : html`<a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github"
-              >${github}</a
+              >${github} Github</a
             >`}
       </header>
 

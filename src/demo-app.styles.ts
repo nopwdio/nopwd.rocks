@@ -29,11 +29,11 @@ export default css`
     display: flex;
     padding: var(--np-core-padding-m);
     color: var(--np-core-color-white);
+    font-size: var(--np-core-font-size-s);
   }
 
   header {
     justify-content: space-between;
-    font-size: var(--np-core-font-size-s);
   }
 
   header np-logout {
@@ -60,7 +60,6 @@ export default css`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    font-size: var(--np-core-font-size-s);
   }
 
   footer nav {

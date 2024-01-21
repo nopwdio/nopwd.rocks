@@ -46,10 +46,9 @@ export class ViewUser extends LitElement {
           ? html`<aside>
               <h3>Congratulation 🎉</h3>
               <p>
-                You just have created a brand new passkey. To use it, logout and try to log in
-                again. You will be ask to select this passkey to authenticate.
+                Your passkey has been created! To use it, logout and try to log in again. You will
+                be ask to select this passkey to authenticate.
               </p>
-              <np-logout>Logout and test it</np-logout>
             </aside>`
           : html`<aside>
               <h3>Enable fingerprint or Face ID on this device?</h3>

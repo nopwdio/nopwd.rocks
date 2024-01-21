@@ -86,6 +86,7 @@ export class ViewLogin extends LitElement {
       return;
     }
 
+    console.log(e.detail);
     showNotification(this, "Unexpected error", "Please try again and get lucky :)");
   }
 }
