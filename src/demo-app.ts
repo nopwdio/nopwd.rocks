@@ -81,7 +81,7 @@ export class DemoApp extends LitElement {
       showNotification(this, `Alors Pierre!`, `Quoi de neuf?`, 6000);
     }
 
-    // TODO: remove when safari fixed the bug 257176
+    // TODO: remove when safari fixed the bug #257176
     if (this.session.suggest_passkeys) {
       // disgusting solution but the page needs to be refreshed for safari
       // if a conditional ui is started while creating a passkey
