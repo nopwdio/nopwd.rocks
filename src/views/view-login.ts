@@ -7,7 +7,7 @@ import login from "./view-login.styles.js";
 import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
 import "@nopwdio/sdk-js/dist/components/np-email-auth.js";
 import { hideNotification, showNotification } from "../components/ui-notification.js";
-
+import "../components/ui-timestamp.js";
 import {
   InvalidCodeParameterError,
   NetworkError,
@@ -64,31 +64,44 @@ export class ViewLogin extends LitElement {
 
   onError(e: CustomEvent<NoPwdError>) {
     if (e.detail instanceof MissingEmailError) {
-      showNotification(this, "Missing email address", "Enter your email to authenticate.");
+      showNotification(this, {
+        header: "Missing email address",
+        description: html`Enter your email to authenticate.`,
+      });
       return;
     }
 
     if (e.detail instanceof InvalidEmailError) {
-      showNotification(
-        this,
-        "invalid email address",
-        "Enter a valid email address to authenticate."
-      );
+      showNotification(this, {
+        header: "invalid email address",
+        description: html`Enter a valid email address to authenticate.`,
+      });
       return;
     }
 
     if (e.detail instanceof NetworkError) {
-      showNotification(this, "No connection", "Find some hotspot and try again.");
+      showNotification(this, {
+        header: "No connection",
+        description: html`Find some hotspot and try again.`,
+      });
       return;
     }
 
     if (e.detail instanceof InvalidCodeParameterError) {
-      showNotification(this, "Expired or malformed link", "Enter your email and try again.");
+      showNotification(this, {
+        header: "Expired or malformed link",
+        description: html`Enter your email and try again.`,
+      });
       return;
     }
 
     if (e.detail instanceof QuotaError) {
-      showNotification(this, "Too many attempts", "Wait a moment and try again.");
+      const retryAt = e.detail.getRetryAt();
+      showNotification(this, {
+        header: "Too many attempts",
+        description: html`You must retry <ui-timestamp timestamp=${retryAt}></ui-timestamp>.`,
+        duration: Math.min(retryAt * 1000 - Date.now(), 6000),
+      });
       return;
     }
 
@@ -97,6 +110,9 @@ export class ViewLogin extends LitElement {
     }
 
     console.log(e.detail);
-    showNotification(this, "Unexpected error", "Please try again and get lucky :)");
+    showNotification(this, {
+      header: "Unexpected error",
+      description: html`Please try again and get lucky :)`,
+    });
   }
 }

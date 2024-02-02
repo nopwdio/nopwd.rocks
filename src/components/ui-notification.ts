@@ -1,18 +1,28 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { bell, cross } from "../styles/icon.styles";
 
-export const showNotification = function (
-  el: HTMLElement,
-  header: string,
-  description?: string,
-  duration: number = 4000
-) {
+const DEFAULT_DURATION = 6000;
+
+export enum Type {
+  INFO,
+  WARNING,
+  ERROR,
+}
+
+export interface Notification {
+  header: string;
+  description?: TemplateResult;
+  duration?: number;
+  type?: Type;
+}
+
+export const showNotification = function (el: HTMLElement, notification: Notification) {
   el.dispatchEvent(
     new CustomEvent("ui-notification:show", {
       composed: true,
       bubbles: true,
-      detail: { header, description, duration },
+      detail: notification,
     })
   );
 };
@@ -30,7 +40,7 @@ export const hideNotification = function (el: HTMLElement) {
 export class UiNotification extends LitElement {
   private timeout?: number;
   @property({ type: String }) private header: string = "";
-  @property({ type: String }) private description?: string;
+  @property({ type: Object }) private description?: TemplateResult;
 
   connectedCallback() {
     super.connectedCallback();
@@ -49,16 +59,16 @@ export class UiNotification extends LitElement {
   }
 
   private onShowEvent(e: any) {
-    this.show(e.detail.duration, e.detail.header, e.detail.description);
+    this.show(e.detail as Notification);
   }
 
   private onHideEvent(e: any) {
     this.hide();
   }
 
-  private show(duration: number, header: string, description?: string) {
-    this.header = header;
-    this.description = description;
+  private show(notification: Notification) {
+    this.header = notification.header;
+    this.description = notification.description;
 
     this.style.display = "flex";
     window.requestAnimationFrame(() => {
@@ -67,7 +77,7 @@ export class UiNotification extends LitElement {
 
       this.timeout = window.setTimeout(() => {
         this.hide();
-      }, duration);
+      }, notification.duration || DEFAULT_DURATION);
     });
   }
 

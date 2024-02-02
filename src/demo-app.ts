@@ -22,17 +22,18 @@ export class DemoApp extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback();
-    // we preload the view-user
+    // we preload views
     import("./views/view-user.js");
     import("./views/view-login.js");
-
-    this.session = await get();
 
     // we get the sdk version
     this.sdkVersion =
       document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
     this.appVersion =
       document.querySelector('meta[name="app-version"]')?.getAttribute("content") || "unknown";
+
+    // we get the current session
+    this.session = await get();
   }
 
   render() {
@@ -78,31 +79,26 @@ export class DemoApp extends LitElement {
     const vip = isVIP(this.session.token_payload.sub);
 
     if (vip) {
-      showNotification(this, `Alors Pierre!`, `Quoi de neuf?`, 6000);
-    }
-
-    // TODO: remove when safari fixed the bug #257176
-    if (this.session.suggest_passkeys) {
-      // disgusting solution but the page needs to be refreshed for safari
-      // if a conditional ui is started while creating a passkey
-      // see https://bugs.webkit.org/show_bug.cgi?id=257176
-      // shoud be fixed soon:)
-      location.reload();
+      showNotification(this, {
+        header: `Alors Pierre!`,
+        description: html`Quoi de neuf?`,
+      });
     }
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
-    showNotification(
-      this,
-      `Passkey has been created`,
-      `You can now use it to log in with fingerprint or Face ID.`,
-      6000
-    );
+    showNotification(this, {
+      header: `Passkey has been created`,
+      description: html`You can now use it to log in with fingerprint or Face ID.`,
+    });
   }
 
   onLogout(e: CustomEvent) {
     this.session = null;
-    showNotification(this, `You are logged out`, `We hope to see you soon!`);
+    showNotification(this, {
+      header: `You are logged out`,
+      description: html`We hope to see you soon!`,
+    });
   }
 }
 
