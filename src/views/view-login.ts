@@ -40,9 +40,14 @@ export class ViewLogin extends LitElement {
       <np-passkey-conditional
         @input=${this.onEmailChange}
         @np:error=${this.onError}
-        lifetime="3600"
+        lifetime="604800"
       ></np-passkey-conditional>
-      <np-email-auth email=${this.email} @np:error=${this.onError} lifetime="3600"></np-email-auth>
+
+      <np-email-auth
+        email=${this.email}
+        @np:error=${this.onError}
+        lifetime="604800"
+      ></np-email-auth>
 
       <p class="disclaimer">
         By logging in, you are agreeing to our

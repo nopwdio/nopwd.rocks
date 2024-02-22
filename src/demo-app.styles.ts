@@ -67,17 +67,18 @@ export default css`
     gap: var(--np-core-padding-m);
   }
 
-  footer :is(.version, .commit) {
+  footer :is(.version, .commit, .api) {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: var(--np-core-padding-m);
+    gap: var(--np-core-padding-xl);
   }
-  footer :is(.version, .commit) .value {
+  footer .value {
     font-weight: var(--np-core-font-weight-m);
-    padding: var(--np-core-padding-xs) var(--np-core-padding-s);
     color: var(--np-core-color-grey-xl);
-    background-color: var(--np-core-color-grey-xs);
-    border-radius: var(--np-core-border-radius-s);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: var(--np-core-padding-s);
+    padding: var(--np-core-padding-s) var(--np-core-padding-m);
   }
 
   footer details {

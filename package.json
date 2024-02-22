@@ -1,6 +1,6 @@
 {
   "name": "@nopwdio/nopwd.rocks",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "author": "Adrien Pinet",
   "contributors": [
@@ -32,7 +32,7 @@
     "build": "npm run clean && node ./build.js"
   },
   "dependencies": {
-    "@nopwdio/sdk-js": "^0.4.13"
+    "@nopwdio/sdk-js": "^0.5.3"
   },
   "devDependencies": {
     "esbuild": "^0.19.4",

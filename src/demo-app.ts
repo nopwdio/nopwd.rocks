@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import "@nopwdio/sdk-js/dist/components/np-logout.js";
+import "@nopwdio/sdk-js/dist/components/np-status.js";
 
 import "./components/ui-notification.js";
 
@@ -25,6 +26,7 @@ export class DemoApp extends LitElement {
     // we preload views
     import("./views/view-user.js");
     import("./views/view-login.js");
+    //import("@nopwdio/sdk-js/dist/components/np-status");
 
     // we get the sdk version
     this.sdkVersion =
@@ -68,6 +70,10 @@ export class DemoApp extends LitElement {
               <span class="name">demo app:</span>
               <span class="value">v${this.appVersion}</span>
             </a>
+            <span class="api">
+              <span class="name">Api status:</span>
+              <np-status class="value"></np-status>
+            </span>
           </nav>
         </details>
       </footer>
