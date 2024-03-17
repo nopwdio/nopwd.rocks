@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import "@nopwdio/sdk-js/dist/components/np-logout.js";
+import "@nopwdio/sdk-js/dist/components/np-status.js";
 
 import "./components/ui-notification.js";
 
