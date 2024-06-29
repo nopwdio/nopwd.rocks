@@ -90,6 +90,8 @@ export class DemoApp extends LitElement {
         description: html`Quoi de neuf?`,
       });
     }
+
+    console.log(this.session.token_payload);
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
@@ -110,7 +112,7 @@ export class DemoApp extends LitElement {
 
 const isVIP = function (email: string) {
   const vips: number[] = [
-    24763, // api
+    //24763, // api
     40254, // zam
   ];
 
