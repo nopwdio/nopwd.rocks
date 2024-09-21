@@ -73,6 +73,11 @@ export default css`
     justify-content: space-between;
     gap: var(--np-core-padding-xl);
   }
+
+  np-status::part(link) {
+    background-color: transparent;
+  }
+
   footer .value {
     font-weight: var(--np-core-font-weight-m);
     color: var(--np-core-color-grey-xl);

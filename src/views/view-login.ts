@@ -4,8 +4,7 @@ import { customElement, property } from "lit/decorators.js";
 import view from "./view.styles.js";
 import login from "./view-login.styles.js";
 
-import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
-import "@nopwdio/sdk-js/dist/components/np-email-auth.js";
+import "@nopwdio/sdk-js/dist/components/np-login.js";
 import { hideNotification, showNotification } from "../components/ui-notification.js";
 import "../components/ui-timestamp.js";
 import {
@@ -37,18 +36,11 @@ export class ViewLogin extends LitElement {
       <span class="avatar">${user}</span>
 
       <!-- the only logic to use magic link or passkey authentication is here -->
-      <np-passkey-conditional
-        @input=${this.onEmailChange}
+      <np-login
         @np:error=${this.onError}
         lifetime="604800"
-        id="input"
-      ></np-passkey-conditional>
-
-      <np-email-auth
-        email=${this.email}
-        @np:error=${this.onError}
-        lifetime="604800"
-      ></np-email-auth>
+        placeholder="Enter your email"
+      ></np-login>
 
       <p class="disclaimer">
         By logging in, you are agreeing to our

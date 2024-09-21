@@ -6,8 +6,6 @@ import user from "./view-user.styles.js";
 
 import "../components/ui-timestamp.js";
 
-import "@nopwdio/sdk-js/dist/components/np-email-auth.js";
-import "@nopwdio/sdk-js/dist/components/np-passkey-conditional.js";
 import "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";

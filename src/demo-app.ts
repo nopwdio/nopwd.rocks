@@ -72,7 +72,7 @@ export class DemoApp extends LitElement {
             </a>
             <span class="api">
               <span class="name">Api status:</span>
-              <np-status class="value"></np-status>
+              <np-status></np-status>
             </span>
           </nav>
         </details>
