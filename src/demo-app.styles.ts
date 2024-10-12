@@ -102,7 +102,7 @@ export default css`
     gap: var(--np-core-padding-s);
   }
 
-  main {
+  np-if {
     display: flex;
     flex-flow: column;
     align-items: center;

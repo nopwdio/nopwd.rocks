@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import "@nopwdio/sdk-js/dist/components/np-if.js";
 import "@nopwdio/sdk-js/dist/components/np-logout.js";
 import "@nopwdio/sdk-js/dist/components/np-status.js";
 
@@ -17,7 +18,6 @@ import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-regist
 export class DemoApp extends LitElement {
   @property() sdkVersion?: string;
   @property() appVersion?: string;
-  @property({ type: Object }) session?: Session | null;
 
   static styles = [core, app];
 
@@ -33,9 +33,6 @@ export class DemoApp extends LitElement {
       document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
     this.appVersion =
       document.querySelector('meta[name="app-version"]')?.getAttribute("content") || "unknown";
-
-    // we get the current session
-    this.session = await get();
   }
 
   render() {
@@ -43,20 +40,22 @@ export class DemoApp extends LitElement {
       <ui-notification></ui-notification>
       <header @np:logout=${this.onLogout}>
         <a href="https://nopwd.io">${bolt} by nopwd.io</a>
-        ${this.session
-          ? html`<np-logout></np-logout>`
-          : html`<a href="https://github.com/nopwdio/nopwd.rocks" aria-label="github"
-              >${github} Github</a
-            >`}
+        <np-if>
+          <np-logout slot="authenticated"></np-logout>
+          <a
+            slot="unauthenticated"
+            href="https://github.com/nopwdio/nopwd.rocks"
+            aria-label="github"
+            >${github} Github</a
+          >
+        </np-if>
       </header>
 
-      <main @np:login=${this.onLogin} @np:logout=${this.onLogout}>
-        ${this.session === undefined
-          ? html`please wait...`
-          : this.session === null
-          ? html`<view-login></view-login>`
-          : html`<view-user></view-user>`}
-      </main>
+      <np-if @np:login=${this.onLogin} @np:logout=${this.onLogout}>
+        <view-login slot="unauthenticated"></view-login>
+        <view-user slot="authenticated"></view-user>
+        <div slot="unknown"></div>
+      </np-if>
       <footer>
         <nav></nav>
         <details>
@@ -81,8 +80,8 @@ export class DemoApp extends LitElement {
   }
 
   async onLogin(e: CustomEvent<Session>) {
-    this.session = e.detail;
-    const vip = isVIP(this.session.token_payload.sub);
+    const session = e.detail;
+    const vip = isVIP(session.token_payload.sub);
 
     if (vip) {
       showNotification(this, {
@@ -91,7 +90,7 @@ export class DemoApp extends LitElement {
       });
     }
 
-    console.log(this.session.token_payload);
+    console.log(session.token_payload);
   }
 
   async onRegister(e: CustomEvent<RegisterEvent>) {
@@ -102,7 +101,6 @@ export class DemoApp extends LitElement {
   }
 
   onLogout(e: CustomEvent) {
-    this.session = null;
     showNotification(this, {
       header: `You are logged out`,
       description: html`We hope to see you soon!`,

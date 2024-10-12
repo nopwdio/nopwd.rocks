@@ -30,7 +30,7 @@ export class ViewUser extends LitElement {
 
   render() {
     if (!this.session) {
-      return html`not authenticated (shouldn't occur here cause this view is for authenticated user)`;
+      return html`not authenticated`;
     }
 
     return html`
