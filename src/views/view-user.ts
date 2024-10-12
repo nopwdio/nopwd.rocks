@@ -22,6 +22,7 @@ export class ViewUser extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     this.session = await get();
+    this.requestUpdate();
   }
 
   onRegister(e: CustomEvent<RegisterEvent>) {
@@ -29,8 +30,12 @@ export class ViewUser extends LitElement {
   }
 
   render() {
-    if (!this.session) {
-      return html`not authenticated`;
+    if (this.session === undefined) {
+      return html``;
+    }
+
+    if (this.session === null) {
+      return html`unauthenticated`;
     }
 
     return html`
