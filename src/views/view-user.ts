@@ -9,7 +9,11 @@ import "../components/ui-timestamp.js";
 import "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
-import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
+import {
+  Session,
+  addSessionStateChanged,
+  removeSessionStateChanged,
+} from "@nopwdio/sdk-js/dist/core/session.js";
 import { shieldCheck } from "../styles/icon.styles.js";
 
 @customElement("view-user")
@@ -19,10 +23,23 @@ export class ViewUser extends LitElement {
 
   static styles = [view, user];
 
+  constructor() {
+    super();
+    this.onSessionChanged = this.onSessionChanged.bind(this);
+  }
+
   async connectedCallback() {
     super.connectedCallback();
-    this.session = await get();
-    this.requestUpdate();
+    addSessionStateChanged(this.onSessionChanged);
+  }
+
+  async disconnectedCallback() {
+    super.disconnectedCallback();
+    removeSessionStateChanged(this.onSessionChanged);
+  }
+
+  onSessionChanged(session: Session | null | undefined) {
+    this.session = session;
   }
 
   onRegister(e: CustomEvent<RegisterEvent>) {
