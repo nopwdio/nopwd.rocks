@@ -11,5 +11,13 @@ export default css`
   }
 
   np-login {
+    border-color: var(--np-core-color-grey-m);
+  }
+  np-login:hover {
+    border-color: var(--np-core-color-grey-s);
+  }
+
+  np-login:focus {
+    border-color: var(--np-core-color-grey-xs);
   }
 `;

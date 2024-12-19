@@ -34,7 +34,7 @@ const pageDesc = {
   };
 
 
-import pkg from "./package.json" assert {type: "json"};
+import pkg from "./package.json" with {type: "json"};
 const sdkVersion = pkg.dependencies["@nopwdio/sdk-js"].substring(1);
 const appVersion = pkg.version;
 await fs.writeFile(`${outDir}/index.html`, index(pageDesc, sdkVersion, appVersion));

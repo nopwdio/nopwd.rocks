@@ -36,7 +36,6 @@ export const index = (pageDesc, sdkVersion, appVersion) => `
     <meta charset="utf-8" />
     
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#3b82f6" />
     
     <meta name="sdk-version" content="${sdkVersion}" />
     <meta name="app-version" content="${appVersion}" />

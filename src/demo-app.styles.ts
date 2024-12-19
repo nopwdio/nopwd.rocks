@@ -9,7 +9,7 @@ export default css`
     gap: var(--np-core-padding-l);
 
     min-height: 100dvh;
-    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+    background-image: linear-gradient(62deg, #aee5ff 0%, #f0e3ff 100%);
   }
 
   h1 {
