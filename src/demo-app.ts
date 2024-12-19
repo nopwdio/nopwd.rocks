@@ -21,20 +21,23 @@ export class DemoApp extends LitElement {
 
   static styles = [core, app];
 
+  // Method called when the element is connected to the DOM
   async connectedCallback() {
     super.connectedCallback();
-    // we preload views
+    // Preload views
     import("./views/view-user.js");
     import("./views/view-login.js");
     //import("@nopwdio/sdk-js/dist/components/np-status");
 
-    // we get the sdk version
+    // Get the SDK version
     this.sdkVersion =
       document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
+    // Get the app version
     this.appVersion =
       document.querySelector('meta[name="app-version"]')?.getAttribute("content") || "unknown";
   }
 
+  // Render method for the UI
   render() {
     return html`
       <ui-notification></ui-notification>
@@ -54,7 +57,7 @@ export class DemoApp extends LitElement {
       <np-if @np:login=${this.onLogin} @np:logout=${this.onLogout}>
         <view-login slot="unauthenticated"></view-login>
         <view-user slot="authenticated"></view-user>
-        <div slot="unknown"></div>
+        <div slot="unknown">please wait...</div>
       </np-if>
       <footer>
         <nav></nav>
@@ -79,6 +82,7 @@ export class DemoApp extends LitElement {
     `;
   }
 
+  // Method called on login
   async onLogin(e: CustomEvent<Session>) {
     const session = e.detail;
     const vip = isVIP(session.token_payload.sub);
@@ -93,6 +97,7 @@ export class DemoApp extends LitElement {
     console.log(session.token_payload);
   }
 
+  // Method called on register
   async onRegister(e: CustomEvent<RegisterEvent>) {
     showNotification(this, {
       header: `Passkey has been created`,
@@ -100,6 +105,7 @@ export class DemoApp extends LitElement {
     });
   }
 
+  // Method called on logout
   onLogout(e: CustomEvent) {
     showNotification(this, {
       header: `You are logged out`,
@@ -108,6 +114,7 @@ export class DemoApp extends LitElement {
   }
 }
 
+// Function to check if a user is VIP and display a specific welcome message
 const isVIP = function (email: string) {
   const vips: number[] = [
     //24763, // api

@@ -3,20 +3,24 @@ import { customElement, property } from "lit/decorators.js";
 
 @customElement("ui-timestamp")
 export class UiTimestamp extends LitElement {
+  // Define reactive properties
   @property({ type: Number }) timestamp?: number;
   @property({ type: Number }) precision: number = 60;
   private interval?: number;
 
+  // Set up an interval to update the component every second
   connectedCallback() {
     super.connectedCallback();
     this.interval = setInterval(() => this.requestUpdate(), 1000);
   }
 
+  // Clear the interval when the component is disconnected
   disconnectedCallback(): void {
     super.disconnectedCallback();
     clearInterval(this.interval);
   }
 
+  // Render the component's HTML template
   render() {
     if (this.timestamp === undefined) {
       return html`--`;
@@ -37,6 +41,7 @@ export class UiTimestamp extends LitElement {
       : html`in <span class="value">${intervalText}</span>`;
   }
 
+  // Convert the interval to a human-readable text
   intervalToText(seconds: number) {
     if (seconds < 60) {
       return `${seconds} seconds`;
@@ -90,6 +95,7 @@ export class UiTimestamp extends LitElement {
     return `${centuries} centuries`;
   }
 
+  // Define styles for the component
   static styles = css`
     .value {
       font-variant-numeric: tabular-nums;
@@ -97,6 +103,7 @@ export class UiTimestamp extends LitElement {
   `;
 }
 
+// Define the global interface for the custom element
 declare global {
   interface HTMLElementTagNameMap {
     "ui-timestamp": UiTimestamp;

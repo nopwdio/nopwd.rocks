@@ -9,10 +9,7 @@ export default css`
     gap: var(--np-core-padding-l);
 
     min-height: 100dvh;
-    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-    background-image: url("/static/bg.svg");
-    --webkit-background-size: cover;
-    background-size: cover;
+    background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
   }
 
   h1 {
@@ -28,7 +25,7 @@ export default css`
   footer {
     display: flex;
     padding: var(--np-core-padding-m);
-    color: var(--np-core-color-white);
+    color: var(--np-core-color-black);
     font-size: var(--np-core-font-size-s);
   }
 
@@ -46,14 +43,14 @@ export default css`
 
   np-logout:not([state])::part(button) {
     background: transparent;
-    border-color: var(--np-core-color-white);
-    color: var(--np-core-color-white);
+    border-color: var(--np-core-color-black);
+    color: var(--np-core-color-black);
   }
 
   np-logout[state="loggingout"]::part(button) {
     background: transparent;
     border-color: transparent;
-    color: var(--np-core-color-white);
+    color: var(--np-core-color-black);
   }
 
   footer {
@@ -78,12 +75,13 @@ export default css`
     background-color: transparent;
   }
 
+  footer .api {
+    padding-top: var(--np-core-padding-s);
+  }
+
   footer .value {
-    font-weight: var(--np-core-font-weight-m);
-    color: var(--np-core-color-grey-xl);
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: var(--np-core-padding-s);
-    padding: var(--np-core-padding-s) var(--np-core-padding-m);
+    font-weight: var(--np-core-font-weight-l);
+    color: var(--np-core-color-grey-xs);
   }
 
   footer details {
@@ -121,10 +119,10 @@ export default css`
     gap: var(--np-core-icon-gap);
 
     text-decoration: none;
-    color: var(--np-core-color-grey-xl);
+    color: var(--np-core-color-grey-xs);
   }
 
   a:hover {
-    color: var(--np-core-color-white);
+    color: var(--np-core-color-black);
   }
 `;

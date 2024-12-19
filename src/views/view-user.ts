@@ -18,43 +18,56 @@ import { shieldCheck } from "../styles/icon.styles.js";
 
 @customElement("view-user")
 export class ViewUser extends LitElement {
+  // Define properties for session and createdPasskey
   @property({ type: Object }) session?: Session | null = undefined;
   @property({ type: Object }) createdPasskey?: RegisterEvent;
 
+  // Apply styles to the component
   static styles = [view, user];
 
   constructor() {
     super();
+    // Bind the onSessionChanged method to the current instance
     this.onSessionChanged = this.onSessionChanged.bind(this);
   }
 
+  // Method called when the element is connected to the DOM
   async connectedCallback() {
     super.connectedCallback();
+    // Add session state change listener
     addSessionStateChanged(this.onSessionChanged);
   }
 
+  // Method called when the element is disconnected from the DOM
   async disconnectedCallback() {
     super.disconnectedCallback();
+    // Remove session state change listener
     removeSessionStateChanged(this.onSessionChanged);
   }
 
+  // Method to handle session state changes
   onSessionChanged(session: Session | null | undefined) {
     this.session = session;
   }
 
+  // Method to handle passkey registration
   onRegister(e: CustomEvent<RegisterEvent>) {
     this.createdPasskey = e.detail;
   }
 
+  // Render method for the UI
   render() {
+    // If session is undefined, return an empty template
     if (this.session === undefined) {
       return html``;
     }
 
+    // If session is null, return an unauthenticated message
     if (this.session === null) {
       return html`unauthenticated`;
     }
 
+    // Render authenticated user information and passkey registration options
     return html`
       <span class="avatar">${shieldCheck}</span>
       <h2>
@@ -125,6 +138,7 @@ export class ViewUser extends LitElement {
   }
 }
 
+// Define the custom element in the global HTMLElementTagNameMap
 declare global {
   interface HTMLElementTagNameMap {
     "view-user": ViewUser;

@@ -5,32 +5,33 @@ import view from "./view.styles.js";
 import login from "./view-login.styles.js";
 
 import "@nopwdio/sdk-js/dist/components/np-login.js";
-import { hideNotification, showNotification } from "../components/ui-notification.js";
+import { showNotification } from "../components/ui-notification.js";
 import "../components/ui-timestamp.js";
 import {
   InvalidCodeParameterError,
   NetworkError,
   QuotaError,
-  UnexpectedError,
   NoPwdError,
   InvalidEmailError,
-  UnknownChallengeOrPasskeyError,
   MissingEmailError,
   AbortError,
 } from "@nopwdio/sdk-js/dist/core/errors.js";
-import { shieldCheck, shieldExclamation, user } from "../styles/icon.styles.js";
+import { user } from "../styles/icon.styles.js";
 
+// Define the global interface for the custom element
 declare global {
   interface HTMLElementTagNameMap {
     "view-login": ViewLogin;
   }
 }
 
+// Define the custom element
 @customElement("view-login")
 export class ViewLogin extends LitElement {
-  @property() email: string = "";
+  // Apply styles to the component
   static styles = [view, login];
 
+  // Render the component's HTML template
   render() {
     return html`
       <span class="avatar">${user}</span>
@@ -50,12 +51,7 @@ export class ViewLogin extends LitElement {
     `;
   }
 
-  onEmailChange(e: KeyboardEvent) {
-    const input = e.target as HTMLInputElement;
-    this.email = input.value;
-    hideNotification(this);
-  }
-
+  // Handle errors from the np-login component
   onError(e: CustomEvent<NoPwdError>) {
     if (e.detail instanceof MissingEmailError) {
       showNotification(this, {
@@ -106,7 +102,7 @@ export class ViewLogin extends LitElement {
     console.log(e.detail);
     showNotification(this, {
       header: "Unexpected error",
-      description: html`Please try again and get lucky :)`,
+      description: html`Please try again to get lucky :)`,
     });
   }
 }

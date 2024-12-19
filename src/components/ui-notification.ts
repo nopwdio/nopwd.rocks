@@ -1,15 +1,19 @@
+// Importation des modules nécessaires depuis la bibliothèque Lit
 import { LitElement, css, html, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { bell, cross } from "../styles/icon.styles";
 
+// Default duration for the notification in milliseconds
 const DEFAULT_DURATION = 6000;
 
+// Enum representing the types of notifications
 export enum Type {
   INFO,
   WARNING,
   ERROR,
 }
 
+// Interface defining the structure of a notification
 export interface Notification {
   header: string;
   description?: TemplateResult;
@@ -17,6 +21,7 @@ export interface Notification {
   type?: Type;
 }
 
+// Function to show a notification by dispatching a custom event
 export const showNotification = function (el: HTMLElement, notification: Notification) {
   el.dispatchEvent(
     new CustomEvent("ui-notification:show", {
@@ -27,6 +32,7 @@ export const showNotification = function (el: HTMLElement, notification: Notific
   );
 };
 
+// Function to hide a notification by dispatching a custom event
 export const hideNotification = function (el: HTMLElement) {
   el.dispatchEvent(
     new CustomEvent("ui-notification:hide", {
@@ -36,12 +42,14 @@ export const hideNotification = function (el: HTMLElement) {
   );
 };
 
+// Déclaration de l'élément personnalisé `ui-notification`
 @customElement("ui-notification")
 export class UiNotification extends LitElement {
   private timeout?: number;
   @property({ type: String }) private header: string = "";
   @property({ type: Object }) private description?: TemplateResult;
 
+  // Méthode appelée lorsque l'élément est connecté au DOM
   connectedCallback() {
     super.connectedCallback();
 
@@ -52,20 +60,24 @@ export class UiNotification extends LitElement {
     document.addEventListener("ui-notification:hide", this.onHideEvent, false);
   }
 
+  // Méthode appelée lorsque l'élément est déconnecté du DOM
   disconnectedCallback(): void {
     super.disconnectedCallback();
     document.removeEventListener("ui-notification:show", this.onShowEvent);
     document.removeEventListener("ui-notification:hide", this.onHideEvent);
   }
 
+  // Gestionnaire d'événement pour afficher la notification
   private onShowEvent(e: any) {
     this.show(e.detail as Notification);
   }
 
+  // Gestionnaire d'événement pour masquer la notification
   private onHideEvent(e: any) {
     this.hide();
   }
 
+  // Affiche la notification avec les détails fournis
   private show(notification: Notification) {
     this.header = notification.header;
     this.description = notification.description;
@@ -81,12 +93,14 @@ export class UiNotification extends LitElement {
     });
   }
 
+  // Masque la notification
   private hide() {
     window.clearTimeout(this.timeout);
     this.removeAttribute("show");
     this.style.display = "none";
   }
 
+  // Méthode de rendu de l'élément
   render() {
     return html`
       ${bell}
@@ -98,6 +112,7 @@ export class UiNotification extends LitElement {
     `;
   }
 
+  // Styles CSS de l'élément
   static styles = css`
     :host {
       position: fixed;
@@ -167,7 +182,7 @@ export class UiNotification extends LitElement {
 
     p {
       font-size: var(--np-core-font-size-xs);
-      font-weight: var(--np-core-font-weight-m);
+      font-weight: var (--np-core-font-weight-m);
     }
 
     button {
@@ -183,6 +198,7 @@ export class UiNotification extends LitElement {
   `;
 }
 
+// Define the global interface for the custom element
 declare global {
   interface HTMLElementTagNameMap {
     "ui-notification": UiNotification;
