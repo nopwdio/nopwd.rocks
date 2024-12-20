@@ -10,9 +10,7 @@ export default css`
     border: 1px solid var(--np-core-color-white);
     padding: var(--np-core-padding-m);
 
-    box-shadow: 2px 2px 32px rgba(255, 255, 255, 0.9);
-
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
 
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);

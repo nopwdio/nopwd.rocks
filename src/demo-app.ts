@@ -57,23 +57,23 @@ export class DemoApp extends LitElement {
       <np-if @np:login=${this.onLogin} @np:logout=${this.onLogout}>
         <view-login slot="unauthenticated"></view-login>
         <view-user slot="authenticated"></view-user>
-        <div slot="unknown">please wait...</div>
+        <div slot="unknown">Please wait...</div>
       </np-if>
       <footer>
         <nav></nav>
         <details>
-          <summary>info</summary>
+          <summary>Info</summary>
           <nav>
             <a href="https://github.com/nopwdio/sdk-js" class="version">
               <span class="name">@nopwdio/sdk-js:</span>
               <span class="value">v${this.sdkVersion}</span>
             </a>
             <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
-              <span class="name">demo app:</span>
+              <span class="name">Demo app:</span>
               <span class="value">v${this.appVersion}</span>
             </a>
             <span class="api">
-              <span class="name">Api status:</span>
+              <span class="name">API status:</span>
               <np-status></np-status>
             </span>
           </nav>
@@ -89,8 +89,8 @@ export class DemoApp extends LitElement {
 
     if (vip) {
       showNotification(this, {
-        header: `Alors Pierre!`,
-        description: html`Quoi de neuf?`,
+        header: `Yeah!`,
+        description: html`What's up bro?`,
       });
     }
 
@@ -100,16 +100,16 @@ export class DemoApp extends LitElement {
   // Method called on register
   async onRegister(e: CustomEvent<RegisterEvent>) {
     showNotification(this, {
-      header: `Passkey has been created`,
-      description: html`You can now use it to log in with fingerprint or Face ID.`,
+      header: `Passkey Created`,
+      description: html`You can now log in using your fingerprint or Face ID.`,
     });
   }
 
   // Method called on logout
   onLogout(e: CustomEvent) {
     showNotification(this, {
-      header: `You are logged out`,
-      description: html`We hope to see you soon!`,
+      header: `Logged Out`,
+      description: html`We hope to see you again soon!`,
     });
   }
 }

@@ -10,6 +10,14 @@ export default css`
 
     min-height: 100dvh;
     background-image: linear-gradient(62deg, #aee5ff 0%, #f0e3ff 100%);
+
+    background-color: rgb(250, 232, 255);
+    background-image: radial-gradient(at 15% 52%, rgb(129, 140, 248) 0, transparent 68%),
+      radial-gradient(at 53% 40%, rgb(244, 114, 182) 0, transparent 49%),
+      radial-gradient(at 71% 85%, rgb(212, 212, 212) 0, transparent 41%),
+      radial-gradient(at 81% 33%, rgb(103, 232, 249) 0, transparent 40%),
+      radial-gradient(at 67% 93%, rgb(249, 115, 22) 0, transparent 32%),
+      radial-gradient(at 83% 1%, rgb(254, 215, 170) 0, transparent 86%);
   }
 
   h1 {
@@ -105,7 +113,6 @@ export default css`
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    color: white;
   }
 
   .icon {

@@ -133,9 +133,6 @@ export class UiNotification extends LitElement {
       box-shadow: 0px 0px 10px var(--np-core-color-white);
     }
 
-    :host {
-    }
-
     @media (min-width: 280px) {
       :host {
         width: 280px;

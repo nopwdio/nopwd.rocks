@@ -4,6 +4,7 @@ export default css`
   :host {
     gap: var(--np-core-padding-s);
     align-items: center;
+    box-shadow: 2px 2px 32px rgba(255, 255, 255, 0.9);
   }
   span.avatar {
     color: var(--np-core-color-green-m);

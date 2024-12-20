@@ -44,7 +44,7 @@ export class ViewLogin extends LitElement {
       ></np-login>
 
       <p class="disclaimer">
-        By logging in, you are agreeing to our
+        By logging in, you agree to our
         <a href="https://dev.nopwd.io/policies/terms">Terms of Service</a> and
         <a href="https://dev.nopwd.io/policies/privacy">Privacy Policy</a>.
       </p>
@@ -55,32 +55,32 @@ export class ViewLogin extends LitElement {
   onError(e: CustomEvent<NoPwdError>) {
     if (e.detail instanceof MissingEmailError) {
       showNotification(this, {
-        header: "Missing email address",
-        description: html`Enter your email to authenticate.`,
+        header: "Email Address Required",
+        description: html`Please enter your email address to proceed.`,
       });
       return;
     }
 
     if (e.detail instanceof InvalidEmailError) {
       showNotification(this, {
-        header: "invalid email address",
-        description: html`Enter a valid email address to authenticate.`,
+        header: "Invalid Email Address",
+        description: html`Please enter a valid email address to proceed.`,
       });
       return;
     }
 
     if (e.detail instanceof NetworkError) {
       showNotification(this, {
-        header: "No connection",
-        description: html`Find some hotspot and try again.`,
+        header: "Network Error",
+        description: html`Please check your internet connection and try again.`,
       });
       return;
     }
 
     if (e.detail instanceof InvalidCodeParameterError) {
       showNotification(this, {
-        header: "Expired or malformed link",
-        description: html`Enter your email and try again.`,
+        header: "Invalid or Expired Link",
+        description: html`Please enter your email address and try again.`,
       });
       return;
     }
@@ -88,8 +88,8 @@ export class ViewLogin extends LitElement {
     if (e.detail instanceof QuotaError) {
       const retryAt = e.detail.getRetryAt();
       showNotification(this, {
-        header: "Too many attempts",
-        description: html`You must retry <ui-timestamp timestamp=${retryAt}></ui-timestamp>.`,
+        header: "Too Many Attempts",
+        description: html`Please try again at <ui-timestamp timestamp=${retryAt}></ui-timestamp>.`,
         duration: Math.min(retryAt * 1000 - Date.now(), 6000),
       });
       return;
@@ -101,8 +101,8 @@ export class ViewLogin extends LitElement {
 
     console.log(e.detail);
     showNotification(this, {
-      header: "Unexpected error",
-      description: html`Please try again to get lucky :)`,
+      header: "Unexpected Error",
+      description: html`An unexpected error occurred. Please try again.`,
     });
   }
 }
