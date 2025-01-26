@@ -93,7 +93,7 @@ export class ViewUser extends LitElement {
             </aside>`
         : html``}
 
-      <details class="token">
+      <details class="token" open>
         <summary>Session Details</summary>
         <ul class="claims">
           <li class="claim">

@@ -2,13 +2,15 @@ import { css } from "lit";
 
 export default css`
   :host {
+    --avatar-size: 100px;
     display: flex;
     flex-flow: column;
     max-width: 280px;
     box-sizing: border-box;
     border-radius: var(--np-border-radius-emphasis);
 
-    padding: var(--np-padding-emphasis);
+    padding: calc(var(--avatar-size) / 2 + var(--np-padding-emphasis)) var(--np-padding-emphasis)
+      var(--np-padding-emphasis) var(--np-padding-emphasis);
     gap: var(--np-gap-emphasis);
     background: var(--np-bg-color-muted);
     -webkit-backdrop-filter: blur(2px);
@@ -37,9 +39,9 @@ export default css`
   }
 
   .avatar {
-    position: relative;
-    top: -50px;
-    width: 100px;
+    position: absolute;
+    top: calc(-1 * var(--avatar-size) / 2);
+    width: var(--avatar-size);
     border-radius: 5em;
     background-color: var(--np-bg-color);
   }
