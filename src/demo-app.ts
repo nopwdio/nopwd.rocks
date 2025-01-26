@@ -36,7 +36,6 @@ export class DemoApp extends LitElement {
     // Preload secondary component
     import("./views/view-user.js");
     import("./views/view-login.js");
-    import("@nopwdio/sdk-js/dist/components/np-status");
   }
 
   // Render method for the UI
@@ -58,7 +57,6 @@ export class DemoApp extends LitElement {
       </np-if>
       <footer>
         <ui-darkmode></ui-darkmode>
-        <np-status></np-status>
       </footer>
     `;
   }

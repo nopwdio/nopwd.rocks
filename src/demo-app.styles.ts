@@ -86,7 +86,7 @@ export default css`
 
   footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   np-status::part(link) {

@@ -54,6 +54,7 @@ export default css`
   details ul li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-weight: var(--np-core-font-weight-l);
     font-size: var(--np-text-size-muted);
   }
