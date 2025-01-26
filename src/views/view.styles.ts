@@ -19,6 +19,7 @@ export default css`
     margin-top: var(--np-gap);
     font-size: var(--np-text-size-emphasis);
     font-weight: var(--np-text-weight-emphasis);
+    text-align: left;
   }
 
   h2 {
@@ -36,6 +37,8 @@ export default css`
   }
 
   .avatar {
+    position: relative;
+    top: -50px;
     width: 100px;
     border-radius: 5em;
     background-color: var(--np-bg-color);
