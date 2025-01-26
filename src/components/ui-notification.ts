@@ -118,8 +118,8 @@ export class UiNotification extends LitElement {
       position: fixed;
       justify-content: space-between;
       align-items: center;
-      width: calc(100% - 2em);
-      margin-left: 1em;
+      width: calc(100% - 2 * var(--np-padding));
+      margin-left: var(--np-padding);
       box-sizing: border-box;
       top: -1em;
       transition: ease all 400ms;
@@ -129,6 +129,8 @@ export class UiNotification extends LitElement {
       gap: var(--np-gap);
 
       color: var(--np-text-color-muted);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
     }
 
     @media (min-width: 280px) {
