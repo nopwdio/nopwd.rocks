@@ -16,22 +16,22 @@ export default css`
   }
 
   h1 {
-    margin-top: var(--np-gap-emphasis);
+    margin-top: var(--np-gap);
     font-size: var(--np-text-size-emphasis);
     font-weight: var(--np-text-weight-emphasis);
   }
 
   h2 {
-    margin-top: var(--np-gap-emphasis);
+    margin-top: var(--np-gap);
     font-size: var(--np-text-size);
     font-weight: var(--np-text-weight-emphasis);
     text-align: left;
   }
 
   h3 {
+    margin-top: var(--np-gap);
     font-size: var(--np-text-size-muted);
     font-weight: var(--np-text-weight-emphasis);
-    margin-top: var(--np-gap-emphasis);
     text-align: left;
   }
 

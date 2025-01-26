@@ -13,6 +13,7 @@ export default css`
     background: var(--np-bg-color);
     color: var(--np-text-color);
     padding: var(--np-padding);
+    gap: var(--np-gap);
   }
 
   div[slot="unauthenticated"] {
