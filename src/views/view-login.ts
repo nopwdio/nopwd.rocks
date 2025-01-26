@@ -35,7 +35,7 @@ export class ViewLogin extends LitElement {
   render() {
     return html`
       <img class="avatar" src="/static/avatar-welcome.webp" />
-
+      <h1>Login to nopwd.rocks</h1>
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-login
         @np:error=${this.onError}

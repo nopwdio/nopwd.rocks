@@ -16,23 +16,22 @@ export default css`
   }
 
   h1 {
-    margin: 0;
-    font-size: var(--np-font-size-emphasis);
-    font-weight: var(--np-font-weight-emphasis);
+    margin-top: var(--np-gap-emphasis);
+    font-size: var(--np-text-size-emphasis);
+    font-weight: var(--np-text-weight-emphasis);
   }
 
   h2 {
-    margin: 0;
-    font-size: var(--np-font-size);
-    font-weight: var(--np-font-weight-emphasis);
-    text-align: center;
+    margin-top: var(--np-gap-emphasis);
+    font-size: var(--np-text-size);
+    font-weight: var(--np-text-weight-emphasis);
+    text-align: left;
   }
 
   h3 {
-    color: var(--np-core-color-grey-xs);
-    font-size: var(--np-font-size-muted);
-    font-weight: var(--np-font-weight-emphasis);
-    margin: 0;
+    font-size: var(--np-text-size-muted);
+    font-weight: var(--np-text-weight-emphasis);
+    margin-top: var(--np-gap-emphasis);
     text-align: left;
   }
 

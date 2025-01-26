@@ -48,7 +48,7 @@ export default css`
     align-items: center;
     padding: var(--np-core-padding-m);
     color: var(--np-text-color);
-    font-size: var(--np-core-font-size-s);
+    font-size: var(--np-text-size);
   }
 
   header {
@@ -56,6 +56,7 @@ export default css`
   }
 
   header a.external {
+    font-size: var(--np-text-size-muted);
     border: 1px solid var(--np-border-color);
     border-radius: var(--np-border-radius-emphasis);
     padding: var(--np-padding) var(--np-padding-emphasis);
@@ -65,7 +66,7 @@ export default css`
     border: 1px solid var(--np-border-color-emphasis);
   }
   header np-logout {
-    font-size: var(--np-core-font-size-s);
+    font-size: var(--np-text-size-muted);
   }
 
   np-logout::part(button) {
