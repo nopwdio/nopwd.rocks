@@ -14,7 +14,7 @@ import {
   addSessionStateChanged,
   removeSessionStateChanged,
 } from "@nopwdio/sdk-js/dist/core/session.js";
-import { shieldCheck } from "../styles/icon.styles.js";
+import { lockClosed } from "../styles/icon.styles.js";
 
 @customElement("view-user")
 export class ViewUser extends LitElement {
@@ -69,47 +69,47 @@ export class ViewUser extends LitElement {
 
     // Render authenticated user information and passkey registration options
     return html`
-      <span class="avatar">${shieldCheck}</span>
+      <img class="avatar" src="/static/avatar-success.webp" />
       <h2>
-        You are now authenticated as <strong>${this.session.token_payload.sub}</strong> on
+        You are authenticated as <strong>${this.session.token_payload.sub}</strong> on
         <strong>${this.session.token_payload.aud}</strong>
       </h2>
       ${this.session.suggest_passkeys
         ? this.createdPasskey
           ? html`<aside>
-              <h3>Congratulation 🎉</h3>
+              <h3>Congratulations 🎉</h3>
               <p>
-                Your passkey has been created! To use it, logout and try to log in again. You will
-                be ask to select this passkey to authenticate.
+                Your passkey has been created! To use it, log out and log in again. You will be
+                prompted to select this passkey for authentication.
               </p>
             </aside>`
           : html`<aside>
-              <h3>Enable fingerprint or Face ID on this device?</h3>
+              <h3>Enable Fingerprint or Face ID on this device?</h3>
               <p>
-                By creating a passkey, you will be able to authenticate with fingerprint or Face ID
-                to this website on all your devices. Awesome right?
+                By creating a passkey, you can authenticate with Fingerprint or Face ID on this
+                website across all your devices. Awesome, right?
               </p>
               <np-passkey-register @np:register=${this.onRegister}></np-passkey-register>
             </aside>`
         : html``}
 
       <details class="token">
-        <summary>Session details</summary>
+        <summary>Session Details</summary>
         <ul class="claims">
           <li class="claim">
-            <span class="name">user:</span
+            <span class="name">User:</span
             ><span class="value">${this.session.token_payload.sub}</span>
           </li>
           <li class="claim">
-            <span class="name">domain:</span
+            <span class="name">Domain:</span
             ><span class="value">${this.session.token_payload.aud}</span>
           </li>
           <li class="claim">
-            <span class="name">issuer:</span
+            <span class="name">Issuer:</span
             ><span class="value">${this.session.token_payload.iss}</span>
           </li>
           <li class="claim">
-            <span class="name">created:</span
+            <span class="name">Created:</span
             ><ui-timestamp
               class="value"
               timestamp=${this.session.created_at}
@@ -117,7 +117,7 @@ export class ViewUser extends LitElement {
             ></ui-timestamp>
           </li>
           <li class="claim">
-            <span class="name">expires:</span
+            <span class="name">Expires:</span
             ><ui-timestamp
               class="value"
               timestamp=${this.session.expires_at}
@@ -125,7 +125,7 @@ export class ViewUser extends LitElement {
             ></ui-timestamp>
           </li>
           <li class="claim">
-            <span class="name">auth with:</span
+            <span class="name">Authenticated with:</span
             ><span class="value"
               >${this.session.token_payload.amr.length
                 ? this.session.token_payload.amr[0]

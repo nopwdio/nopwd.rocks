@@ -6,14 +6,15 @@ export default css`
     flex-flow: column;
     max-width: 280px;
     box-sizing: border-box;
-    border-radius: var(--np-core-border-radius-m);
+    border-radius: var(--np-core-border-radius-s);
     border: 1px solid var(--np-core-color-white);
     padding: var(--np-core-padding-m);
+    gap: 1em;
 
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
 
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
   }
 
   h1 {
@@ -39,11 +40,9 @@ export default css`
     text-align: left;
   }
 
-  span.avatar {
-    margin-top: var(--np-core-padding-m);
-    padding: var(--np-core-padding-m);
-    border: 2px solid transparent;
-    border-radius: var(--np-core-padding-s);
+  .avatar {
+    width: 100px;
+    border-radius: 5em;
   }
 
   span.avatar .icon {
@@ -76,6 +75,6 @@ export default css`
   }
 
   p.disclaimer a:hover {
-    color: var(--np-core-color-grey-s);
+    color: var(--np-core-color-grey-xs);
   }
 `;

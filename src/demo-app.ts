@@ -42,15 +42,9 @@ export class DemoApp extends LitElement {
     return html`
       <ui-notification></ui-notification>
       <header @np:logout=${this.onLogout}>
-        <a href="https://nopwd.io">${bolt} by nopwd.io</a>
         <np-if>
           <np-logout slot="authenticated"></np-logout>
-          <a
-            slot="unauthenticated"
-            href="https://github.com/nopwdio/nopwd.rocks"
-            aria-label="github"
-            >${github} Github</a
-          >
+          <a slot="unauthenticated" href="https://dev.nopwd.io" class="external">Documentation →</a>
         </np-if>
       </header>
 
@@ -60,7 +54,8 @@ export class DemoApp extends LitElement {
         <div slot="unknown">Please wait...</div>
       </np-if>
       <footer>
-        <nav></nav>
+        <a href="https://nopwd.io">${bolt} by <strong>nopwd.io</strong></a>
+
         <details>
           <summary>Info</summary>
           <nav>
@@ -89,8 +84,8 @@ export class DemoApp extends LitElement {
 
     if (vip) {
       showNotification(this, {
-        header: `Yeah!`,
-        description: html`What's up bro?`,
+        header: `What's up bro!`,
+        description: html`We're glad to see you again!`,
       });
     }
 

@@ -16,7 +16,7 @@ import {
   MissingEmailError,
   AbortError,
 } from "@nopwdio/sdk-js/dist/core/errors.js";
-import { user } from "../styles/icon.styles.js";
+import { lockOpen } from "../styles/icon.styles.js";
 
 // Define the global interface for the custom element
 declare global {
@@ -34,7 +34,7 @@ export class ViewLogin extends LitElement {
   // Render the component's HTML template
   render() {
     return html`
-      <span class="avatar">${user}</span>
+      <img class="avatar" src="/static/avatar-welcome.webp" />
 
       <!-- the only logic to use magic link or passkey authentication is here -->
       <np-login

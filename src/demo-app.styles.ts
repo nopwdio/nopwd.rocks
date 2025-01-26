@@ -9,36 +9,59 @@ export default css`
     gap: var(--np-core-padding-l);
 
     min-height: 100dvh;
-    background-image: linear-gradient(62deg, #aee5ff 0%, #f0e3ff 100%);
 
-    background-color: rgb(250, 232, 255);
-    background-image: radial-gradient(at 15% 52%, rgb(129, 140, 248) 0, transparent 68%),
-      radial-gradient(at 53% 40%, rgb(244, 114, 182) 0, transparent 49%),
-      radial-gradient(at 71% 85%, rgb(212, 212, 212) 0, transparent 41%),
-      radial-gradient(at 81% 33%, rgb(103, 232, 249) 0, transparent 40%),
-      radial-gradient(at 67% 93%, rgb(249, 115, 22) 0, transparent 32%),
-      radial-gradient(at 83% 1%, rgb(254, 215, 170) 0, transparent 86%);
+    background-color: rgb(55, 48, 163);
+    background-image: radial-gradient(at 72% 1%, rgb(147, 51, 234) 0, transparent 7%),
+      radial-gradient(at 52% 17%, rgb(217, 70, 239) 0, transparent 85%),
+      radial-gradient(at 2% 26%, rgb(127, 29, 29) 0, transparent 68%),
+      radial-gradient(at 32% 51%, rgb(23, 23, 23) 0, transparent 70%),
+      radial-gradient(at 13% 40%, rgb(216, 180, 254) 0, transparent 43%),
+      radial-gradient(at 97% 79%, rgb(30, 58, 138) 0, transparent 54%);
+  }
+
+  div[slot="unauthenticated"] {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--np-core-padding-m);
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    color: var(--np-core-color-white);
+    font-size: var(--np-core-font-size-l);
+    font-weight: var(--np-core-font-weight-s);
+    padding: 0;
+    margin: 0;
   }
 
   h1 {
     text-align: center;
-    color: var(--np-core-color-grey-s);
+    color: var(--np-core-color-white);
     font-size: var(--np-core-font-size-l);
-    font-weight: var(--np-core-font-weight-l);
+    font-weight: var(--np-core-font-weight-s);
     padding: 0;
-    margin: 0;
+    margin: 1em;
   }
 
   header,
   footer {
     display: flex;
     padding: var(--np-core-padding-m);
-    color: var(--np-core-color-black);
+    color: var(--np-core-color-white);
     font-size: var(--np-core-font-size-s);
   }
 
   header {
-    justify-content: space-between;
+    justify-content: right;
+  }
+
+  header a.external {
+    border: 1px solid var(--np-core-color-white);
+    border-radius: var(--np-core-padding-l);
+    padding: var(--np-core-padding-s) var(--np-core-padding-m);
   }
 
   header np-logout {
@@ -50,15 +73,15 @@ export default css`
   }
 
   np-logout:not([state])::part(button) {
-    background: transparent;
-    border-color: var(--np-core-color-black);
-    color: var(--np-core-color-black);
+    background-color: transparent;
+    border-color: var(--np-core-color-white);
+    color: var(--np-core-color-white);
   }
 
   np-logout[state="loggingout"]::part(button) {
-    background: transparent;
+    background-color: transparent;
     border-color: transparent;
-    color: var(--np-core-color-black);
+    color: var(--np-core-color-white);
   }
 
   footer {
@@ -89,7 +112,7 @@ export default css`
 
   footer .value {
     font-weight: var(--np-core-font-weight-l);
-    color: var(--np-core-color-grey-xs);
+    color: var(--np-core-color-white);
   }
 
   footer details {
@@ -126,10 +149,10 @@ export default css`
     gap: var(--np-core-icon-gap);
 
     text-decoration: none;
-    color: var(--np-core-color-grey-xs);
+    color: var(--np-core-color-white);
   }
 
   a:hover {
-    color: var(--np-core-color-black);
+    color: var(--np-core-color-white);
   }
 `;
