@@ -11,13 +11,10 @@ export default css`
 
   np-login {
     display: flex;
-    border-color: var(--np-core-color-grey-m);
+    --np-component-text-color: var(--np-text-color);
+    --np-component-border-color: var(--np-border-color);
   }
   np-login:hover {
-    border-color: var(--np-core-color-grey-s);
-  }
-
-  np-login:focus {
-    border-color: var(--np-core-color-grey-xs);
+    --np-component-border-color: var(--np-border-color-emphasis);
   }
 `;

@@ -3,11 +3,11 @@ import { customElement, property } from "lit/decorators.js";
 
 import "@nopwdio/sdk-js/dist/components/np-if.js";
 import "@nopwdio/sdk-js/dist/components/np-logout.js";
-import "@nopwdio/sdk-js/dist/components/np-status.js";
 
 import "./components/ui-notification.js";
-
-import core from "./styles/core.styles.js";
+import "@nopwdio/ui/dist/components/ui-darkmode.js";
+import core from "@nopwdio/ui/dist/styles/core.js";
+import sementic from "@nopwdio/ui/dist/styles/sementic.js";
 import app from "./demo-app.styles.js";
 import { bolt, github } from "./styles/icon.styles.js";
 import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
@@ -19,22 +19,24 @@ export class DemoApp extends LitElement {
   @property() sdkVersion?: string;
   @property() appVersion?: string;
 
-  static styles = [core, app];
+  static styles = [core, sementic, app];
 
   // Method called when the element is connected to the DOM
   async connectedCallback() {
     super.connectedCallback();
-    // Preload views
+
+    this.addEventListener(
+      "np:theme",
+      (e: Event) => {
+        this.setAttribute("theme", (e as CustomEvent).detail);
+      },
+      true
+    );
+
+    // Preload secondary component
     import("./views/view-user.js");
     import("./views/view-login.js");
-    //import("@nopwdio/sdk-js/dist/components/np-status");
-
-    // Get the SDK version
-    this.sdkVersion =
-      document.querySelector('meta[name="sdk-version"]')?.getAttribute("content") || "unknown";
-    // Get the app version
-    this.appVersion =
-      document.querySelector('meta[name="app-version"]')?.getAttribute("content") || "unknown";
+    import("@nopwdio/sdk-js/dist/components/np-status");
   }
 
   // Render method for the UI
@@ -42,6 +44,7 @@ export class DemoApp extends LitElement {
     return html`
       <ui-notification></ui-notification>
       <header @np:logout=${this.onLogout}>
+        <a href="https://nopwd.io">${bolt} by <strong>nopwd.io</strong></a>
         <np-if>
           <np-logout slot="authenticated"></np-logout>
           <a slot="unauthenticated" href="https://dev.nopwd.io" class="external">Documentation →</a>
@@ -54,25 +57,8 @@ export class DemoApp extends LitElement {
         <div slot="unknown">Please wait...</div>
       </np-if>
       <footer>
-        <a href="https://nopwd.io">${bolt} by <strong>nopwd.io</strong></a>
-
-        <details>
-          <summary>Info</summary>
-          <nav>
-            <a href="https://github.com/nopwdio/sdk-js" class="version">
-              <span class="name">@nopwdio/sdk-js:</span>
-              <span class="value">v${this.sdkVersion}</span>
-            </a>
-            <a href="https://github.com/nopwdio/nopwd.rocks" class="commit">
-              <span class="name">Demo app:</span>
-              <span class="value">v${this.appVersion}</span>
-            </a>
-            <span class="api">
-              <span class="name">API status:</span>
-              <np-status></np-status>
-            </span>
-          </nav>
-        </details>
+        <ui-darkmode></ui-darkmode>
+        <np-status></np-status>
       </footer>
     `;
   }

@@ -123,14 +123,12 @@ export class UiNotification extends LitElement {
       box-sizing: border-box;
       top: -1em;
       transition: ease all 400ms;
-      padding: var(--np-core-padding-s) var(--np-core-padding-s);
-      border: 1px solid var(--np-core-color-white);
-      border-radius: var(--np-core-padding-xl);
-      gap: var(--np-core-padding-s);
+      padding: var(--np-padding) var(--np-padding);
+      border: 1px solid var(--np-border-color-muted);
+      border-radius: var(--np-border-radius-emphasis);
+      gap: var(--np-gap);
 
-      color: var(--np-core-color-grey-s);
-      background-color: var(--np-core-color-white);
-      box-shadow: 0px 0px 10px var(--np-core-color-white);
+      color: var(--np-text-color-muted);
     }
 
     @media (min-width: 280px) {
@@ -156,14 +154,14 @@ export class UiNotification extends LitElement {
     }
 
     .icon--bell {
-      font-size: var(--np-core-font-size-l);
+      font-size: var(--np-text-size-emphasis);
     }
 
     main {
       display: flex;
       flex: 1;
       flex-flow: column;
-      gap: var(--np-core-padding-xs);
+      gap: var(--np-gap-muted);
     }
 
     h1,
@@ -173,24 +171,23 @@ export class UiNotification extends LitElement {
     }
 
     h1 {
-      font-size: var(--np-core-font-size-s);
-      font-weight: var(--np-core-font-weight-l);
+      font-size: var(--np-text-size);
+      font-weight: var(--np-text-weight-emphasis);
     }
 
     p {
-      font-size: var(--np-core-font-size-xs);
-      font-weight: var (--np-core-font-weight-m);
+      font-size: var(--np-text-size-muted);
     }
 
     button {
-      color: var(--np-core-color-grey-l);
+      color: var(--np-text-color-muted);
       display: flex;
       align-items: center;
       padding: 0;
       margin: 0;
       background: transparent;
       border: none;
-      font-size: var(--np-core-font-size-l);
+      font-size: var(--np-text-size);
     }
   `;
 }

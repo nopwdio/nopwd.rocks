@@ -6,36 +6,32 @@ export default css`
     flex-flow: column;
     max-width: 280px;
     box-sizing: border-box;
-    border-radius: var(--np-core-border-radius-s);
-    border: 1px solid var(--np-core-color-white);
-    padding: var(--np-core-padding-m);
-    gap: 1em;
+    border-radius: var(--np-border-radius-emphasis);
 
-    background-color: rgba(255, 255, 255, 0.8);
-
+    padding: var(--np-padding-emphasis);
+    gap: var(--np-gap-emphasis);
+    background: var(--np-bg-color-muted);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
   }
 
   h1 {
     margin: 0;
-    font-size: var(--np-core-font-size-l);
-    font-weight: var(--np-core-font-weight-m);
-    color: var(--np-core-color-grey-m);
+    font-size: var(--np-font-size-emphasis);
+    font-weight: var(--np-font-weight-emphasis);
   }
 
   h2 {
     margin: 0;
-    color: var(--np-core-color-grey-s);
-    font-size: var(--np-core-font-size-m);
-    font-weight: var(--np-core-font-weight-m);
+    font-size: var(--np-font-size);
+    font-weight: var(--np-font-weight-emphasis);
     text-align: center;
   }
 
   h3 {
     color: var(--np-core-color-grey-xs);
-    font-weight: var(--np-core-font-weight-m);
-    font-size: var(--np-core-font-size-m);
+    font-size: var(--np-font-size-muted);
+    font-weight: var(--np-font-weight-emphasis);
     margin: 0;
     text-align: left;
   }
@@ -43,6 +39,7 @@ export default css`
   .avatar {
     width: 100px;
     border-radius: 5em;
+    background-color: var(--np-bg-color);
   }
 
   span.avatar .icon {
@@ -53,7 +50,7 @@ export default css`
   p {
     font-size: var(--np-core-font-size-s);
     margin: var(--np-core-padding-s) 0;
-    color: var(--np-core-color-grey-s);
+    color: var(--np-text-color-muted);
     text-align: left;
   }
 
@@ -64,17 +61,17 @@ export default css`
   }
 
   p.disclaimer {
-    font-weight: var(--np-core-font-weight-s);
+    font-weight: var(--np-text-weight);
     text-align: center;
   }
 
   p.disclaimer a {
     color: currentColor;
     text-decoration: none;
-    font-weight: var(--np-core-font-weight-m);
+    font-weight: var(--np-text-weight-emphasis);
   }
 
   p.disclaimer a:hover {
-    color: var(--np-core-color-grey-xs);
+    color: var(--np-text-color);
   }
 `;
