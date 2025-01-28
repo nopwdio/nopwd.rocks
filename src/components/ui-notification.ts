@@ -131,6 +131,8 @@ export class UiNotification extends LitElement {
       color: var(--np-text-color-muted);
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
+
+      z-index: 100;
     }
 
     @media (min-width: 280px) {

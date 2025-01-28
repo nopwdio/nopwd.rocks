@@ -11,6 +11,7 @@ export default css`
 
   np-login {
     display: flex;
+    --np-component-border-radius: var(--np-border-radius);
     --np-component-text-color: var(--np-text-color);
     --np-component-border-color: var(--np-border-color);
   }

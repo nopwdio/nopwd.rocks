@@ -27,19 +27,23 @@ export default css`
   h1,
   h2 {
     text-align: center;
-    color: var(--np-core-color-white);
-    font-size: var(--np-core-font-size-l);
-    font-weight: var(--np-core-font-weight-s);
     padding: 0;
     margin: 0;
   }
 
   h1 {
     text-align: center;
-    color: var(--np-core-color-white);
-    font-size: var(--np-core-font-size-l);
-    font-weight: var(--np-core-font-weight-s);
-    padding: 0;
+    font-size: var(--np-text-size-emphasis);
+    font-weight: var(--np-text-weight-emphasis);
+    margin: 1em;
+    color: var(--np-text-color-muted);
+  }
+
+  h2 {
+    text-align: center;
+    font-size: var(--np-text-size);
+    font-weight: var(--np-text-weight-emphasis);
+    color: var(--np-text-color-muted);
     margin: 1em;
   }
 
@@ -47,7 +51,7 @@ export default css`
   footer {
     display: flex;
     align-items: center;
-    padding: var(--np-core-padding-m);
+    padding: var(--np-padding);
     color: var(--np-text-color);
     font-size: var(--np-text-size);
   }
@@ -101,10 +105,6 @@ export default css`
     flex-flow: column;
     align-items: center;
     justify-content: center;
-  }
-
-  .icon {
-    width: var(--np-core-font-size-m);
   }
 
   a {
