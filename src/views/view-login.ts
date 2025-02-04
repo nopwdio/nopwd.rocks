@@ -5,8 +5,10 @@ import view from "./view.styles.js";
 import login from "./view-login.styles.js";
 
 import "@nopwdio/sdk-js/dist/components/np-login.js";
-import { showNotification } from "../components/ui-notification.js";
 import "../components/ui-timestamp.js";
+
+import { isWebauthnSupported } from "@nopwdio/sdk-js/dist/core/webauthn.js";
+import { showNotification } from "../components/ui-notification.js";
 import {
   InvalidCodeParameterError,
   NetworkError,
@@ -16,7 +18,6 @@ import {
   MissingEmailError,
   AbortError,
 } from "@nopwdio/sdk-js/dist/core/errors.js";
-import { lockOpen } from "../styles/icon.styles.js";
 
 // Define the global interface for the custom element
 declare global {
@@ -30,6 +31,10 @@ declare global {
 export class ViewLogin extends LitElement {
   // Apply styles to the component
   static styles = [view, login];
+
+  async connectedCallback() {
+    super.connectedCallback();
+  }
 
   // Render the component's HTML template
   render() {
@@ -55,23 +60,23 @@ export class ViewLogin extends LitElement {
   onError(e: CustomEvent<NoPwdError>) {
     if (e.detail instanceof MissingEmailError) {
       showNotification(this, {
-        header: "Email Address Required",
-        description: html`Please enter your email address to proceed.`,
+        header: "Email Required",
+        description: html`Please enter your email address to continue.`,
       });
       return;
     }
 
     if (e.detail instanceof InvalidEmailError) {
       showNotification(this, {
-        header: "Invalid Email Address",
-        description: html`Please enter a valid email address to proceed.`,
+        header: "Invalid Email",
+        description: html`Please enter a valid email address to continue.`,
       });
       return;
     }
 
     if (e.detail instanceof NetworkError) {
       showNotification(this, {
-        header: "Network Error",
+        header: "Network Issue",
         description: html`Please check your internet connection and try again.`,
       });
       return;

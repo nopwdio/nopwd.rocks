@@ -8,9 +8,9 @@ const DEFAULT_DURATION = 6000;
 
 // Enum representing the types of notifications
 export enum Type {
-  INFO,
-  WARNING,
-  ERROR,
+  INFO = "info",
+  WARNING = "warning",
+  ERROR = "error",
 }
 
 // Interface defining the structure of a notification
@@ -103,9 +103,8 @@ export class UiNotification extends LitElement {
   // Méthode de rendu de l'élément
   render() {
     return html`
-      ${bell}
       <main>
-        <h1>${this.header}</h1>
+        <h1>${bell}${this.header}</h1>
         ${this.description ? html`<p>${this.description}</p>` : html``}
       </main>
       <button @click=${this.hide}>${cross}</button>
@@ -117,7 +116,7 @@ export class UiNotification extends LitElement {
     :host {
       position: fixed;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
       width: calc(100% - 2 * var(--np-padding));
       margin-left: var(--np-padding);
       box-sizing: border-box;
@@ -125,7 +124,7 @@ export class UiNotification extends LitElement {
       transition: ease all 400ms;
       padding: var(--np-padding) var(--np-padding);
       border: 1px solid var(--np-border-color-muted);
-      border-radius: var(--np-border-radius-emphasis);
+      border-radius: var(--np-border-radius);
       gap: var(--np-gap);
 
       color: var(--np-text-color-muted);
@@ -135,10 +134,10 @@ export class UiNotification extends LitElement {
       z-index: 100;
     }
 
-    @media (min-width: 280px) {
+    @media (min-width: 340px) {
       :host {
-        width: 280px;
-        margin-left: calc(50% - 140px);
+        width: 340px;
+        margin-left: calc(50% - 170px);
       }
     }
 
@@ -165,7 +164,7 @@ export class UiNotification extends LitElement {
       display: flex;
       flex: 1;
       flex-flow: column;
-      gap: var(--np-gap-muted);
+      gap: var(--np-gap);
     }
 
     h1,
@@ -175,6 +174,9 @@ export class UiNotification extends LitElement {
     }
 
     h1 {
+      display: flex;
+      align-items: center;
+      gap: var(--np-gap);
       font-size: var(--np-text-size);
       font-weight: var(--np-text-weight-emphasis);
     }
@@ -185,13 +187,14 @@ export class UiNotification extends LitElement {
 
     button {
       color: var(--np-text-color-muted);
+      border-radius: var(--np-border-radius);
       display: flex;
       align-items: center;
-      padding: 0;
+      padding: var(--np-padding-muted);
       margin: 0;
-      background: transparent;
       border: none;
       font-size: var(--np-text-size);
+      background-color: transparent;
     }
   `;
 }

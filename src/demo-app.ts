@@ -9,8 +9,8 @@ import "@nopwdio/ui/dist/components/ui-darkmode.js";
 import core from "@nopwdio/ui/dist/styles/core.js";
 import sementic from "@nopwdio/ui/dist/styles/sementic.js";
 import app from "./demo-app.styles.js";
-import { bolt, github } from "./styles/icon.styles.js";
-import { Session, get } from "@nopwdio/sdk-js/dist/core/session.js";
+import { bolt } from "./styles/icon.styles.js";
+import { Session } from "@nopwdio/sdk-js/dist/core/session.js";
 import { showNotification } from "./components/ui-notification.js";
 import { RegisterEvent } from "@nopwdio/sdk-js/dist/components/np-passkey-register.js";
 
